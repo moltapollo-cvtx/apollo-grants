@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Apollo Energy Group — Grant Opportunities 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0a0f1a;
+    --surface: #111827;
+    --surface2: #1a2332;
+    --border: rgba(255,255,255,0.07);
+    --border-active: rgba(32,210,200,0.3);
+    --teal: #20d2c8;
+    --teal-dim: rgba(32,210,200,0.15);
+    --teal-mid: rgba(32,210,200,0.08);
+    --green: #4ade80;
+    --green-dim: rgba(74,222,128,0.12);
+    --amber: #f59e0b;
+    --amber-dim: rgba(245,158,11,0.12);
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #475569;
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── Background mesh ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 10% 10%, rgba(32,210,200,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 60% at 90% 80%, rgba(74,222,128,0.05) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Layout ── */
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ── Header ── */
+  header {
+    padding: 48px 0 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 32px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 40px;
+  }
+
+  .logo-wrap {
+    width: 88px;
+    height: 88px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border-active);
+    box-shadow: 0 0 32px rgba(32,210,200,0.12), inset 0 1px 0 rgba(255,255,255,0.06);
+    flex-shrink: 0;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 6px;
+  }
+
+  .header-text { display: flex; flex-direction: column; gap: 4px; }
+
+  .header-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  h1 {
+    font-size: clamp(26px, 4vw, 42px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--text-primary);
+  }
+
+  h1 span { color: var(--teal); }
+
+  .header-sub {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    font-weight: 400;
+  }
+
+  /* ── Summary strip ── */
+  .summary-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 36px 0;
+  }
+
+  .stat-cell {
+    background: var(--surface);
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: background 0.2s ease;
+  }
+
+  .stat-cell:hover { background: var(--surface2); }
+
+  .stat-label {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .stat-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--teal);
+    letter-spacing: -0.02em;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .stat-note { font-size: 12px; color: var(--text-muted); }
+
+  /* ── Section headers ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 48px 0 20px;
+  }
+
+  .section-flag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 4px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+
+  .flag-federal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(32,210,200,0.2); }
+  .flag-texas   { background: var(--green-dim); color: var(--green); border: 1px solid rgba(74,222,128,0.2); }
+  .flag-state   { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(245,158,11,0.2); }
+
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── Grant cards ── */
+  .grants-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .grant-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: start;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .grant-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--teal);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    border-radius: 0;
+  }
+
+  .grant-card.texas::before { background: var(--green); }
+  .grant-card.state::before { background: var(--amber); }
+
+  .grant-card:hover {
+    border-color: var(--border-active);
+    background: var(--surface2);
+    transform: translateY(-1px);
+  }
+
+  .grant-card:hover::before { opacity: 1; }
+  .grant-card:active { transform: translateY(0px) scale(0.998); }
+
+  .grant-left { display: flex; flex-direction: column; gap: 10px; }
+
+  .grant-title-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+  .grant-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .grant-status {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .status-active    { background: rgba(74,222,128,0.12); color: var(--green); border: 1px solid rgba(74,222,128,0.2); }
+  .status-watch     { background: rgba(245,158,11,0.12); color: var(--amber); border: 1px solid rgba(245,158,11,0.2); }
+  .status-expired   { background: rgba(148,163,184,0.1); color: var(--text-muted); border: 1px solid var(--border); }
+  .status-rolling   { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(32,210,200,0.2); }
+
+  .grant-body {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    max-width: 72ch;
+  }
+
+  .grant-body strong { color: var(--text-primary); font-weight: 600; }
+
+  .grant-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+
+  .tag {
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 5px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  /* ── Amount badge ── */
+  .grant-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    min-width: 120px;
+  }
+
+  .amount {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-align: right;
+  }
+
+  .amount.federal { color: var(--teal); }
+  .amount.texas   { color: var(--green); }
+  .amount.state   { color: var(--amber); }
+
+  .amount-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── Priority box ── */
+  .priority-section {
+    margin: 48px 0 0;
+    background: linear-gradient(135deg, rgba(32,210,200,0.06) 0%, rgba(74,222,128,0.04) 100%);
+    border: 1px solid rgba(32,210,200,0.18);
+    border-radius: var(--radius);
+    padding: 32px 36px;
+  }
+
+  .priority-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--teal);
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 14px;
+  }
+
+  .priority-title {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+  }
+
+  .priority-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    list-style: none;
+  }
+
+  .priority-item {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 14px;
+    align-items: start;
+  }
+
+  .priority-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--teal);
+    background: var(--teal-dim);
+    border: 1px solid rgba(32,210,200,0.2);
+    border-radius: 7px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .priority-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .priority-text strong { color: var(--text-primary); font-weight: 600; }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 64px;
+    padding: 32px 0 40px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-left {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .footer-right {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .wrapper { padding: 0 20px; }
+    header { grid-template-columns: 1fr; gap: 20px; }
+    .logo-wrap { width: 64px; height: 64px; }
+    .summary-strip { grid-template-columns: repeat(2, 1fr); }
+    .grant-card { grid-template-columns: 1fr; }
+    .grant-right { align-items: flex-start; flex-direction: row; gap: 12px; }
+    h1 { font-size: 26px; }
+  }
+
+  @media (max-width: 480px) {
+    .summary-strip { grid-template-columns: 1fr 1fr; }
+    .grant-card { padding: 20px; }
+  }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .grant-card {
+    animation: fadeUp 0.4s cubic-bezier(0.16,1,0.3,1) both;
+  }
+
+  .grant-card:nth-child(1)  { animation-delay: 0.05s; }
+  .grant-card:nth-child(2)  { animation-delay: 0.10s; }
+  .grant-card:nth-child(3)  { animation-delay: 0.15s; }
+  .grant-card:nth-child(4)  { animation-delay: 0.20s; }
+  .grant-card:nth-child(5)  { animation-delay: 0.25s; }
+  .grant-card:nth-child(6)  { animation-delay: 0.30s; }
+  .grant-card:nth-child(7)  { animation-delay: 0.35s; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-wrap">
+      <img src="apollo-logo.jpg" alt="Apollo Energy Group"/>
+    </div>
+    <div class="header-text">
+      <div class="header-eyebrow">Grant Intelligence Report · FY 2026</div>
+      <h1>Funding Opportunities<br/>for <span>Apollo Energy Group</span></h1>
+      <div class="header-sub">Federal, Texas, Louisiana &amp; Oklahoma programs matched to LNG/CNG, EV charging, and generator services operations.</div>
+    </div>
+  </header>
+
+  <!-- STATS -->
+  <div class="summary-strip">
+    <div class="stat-cell">
+      <div class="stat-label">Total Available</div>
+      <div class="stat-value">$15.4B+</div>
+      <div class="stat-note">Across all programs</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Active / Open</div>
+      <div class="stat-value">7</div>
+      <div class="stat-note">Programs currently accepting</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">High Priority</div>
+      <div class="stat-value">4</div>
+      <div class="stat-note">Immediate action items</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">States Covered</div>
+      <div class="stat-value">4</div>
+      <div class="stat-note">TX · LA · OK · AR</div>
+    </div>
+  </div>
+
+  <!-- FEDERAL -->
+  <div class="section-header">
+    <span class="section-flag flag-federal">Federal</span>
+    <div class="section-title">Federal Programs</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="grants-grid">
+
+    <div class="grant-card">
+      <div class="grant-left">
+        <div class="grant-title-row">
+          <div class="grant-name">NEVI Formula Program</div>
+          <span class="grant-status status-active">Active — Q2/Q3 TX Solicitation</span>
+        </div>
+        <div class="grant-body">
+          FY2026 saw <strong>$885M apportioned</strong> after a 2025 freeze was overturned by federal court order. Texas anticipates releasing its next solicitation in <strong>Q2 or Q3 2026</strong>. Note: FY2026 budget cuts removed ~$85M from Texas's unobligated funds — hardest hit of any state. Best play for Apollo is <strong>subcontracting through L-Charge or other CPOs</strong> as Texas opens the next round.
+        </div>
+        <div class="grant-tags">
+          <span class="tag">EV Charging</span>
+          <span class="tag">L-Charge Partnership</span>
+          <span class="tag">Corridor Infrastructure</span>
+          <span class="tag">Texas</span>
+        </div>
+      </div>
+      <div class="grant-right">
+        <div class="amount federal">$5B</div>
+        <div class="amount-label">Total program</div>
+      </div>
+    </div>
+
+    <div class="grant-card">
+      <div class="grant-left">
+        <div class="grant-title-row">
+          <div class="grant-name">CFI Grant Program</div>
+          <span class="grant-status status-watch">Paused — Watch</span>
+        </div>
+        <div class="grant-body">
+          Discretionary grants for <strong>publicly accessible alternative fuel infrastructure</strong> — EV charging, hydrogen, propane, LNG, and CNG. Covers both community charging and corridor categories. Paused by executive order but Congress-appropriated. <strong>Directly applicable to Apollo's LNG/CNG fueling and EV charging operations.</strong> Watch for reinstatement or new guidance.
+        </div>
+        <div class="grant-tags">
+          <span class="tag">LNG / CNG</span>
+          <span class="tag">EV Charging</span>
+          <span class="tag">Hydrogen</span>
+          <span class="tag">Discretionary</span>
+        </div>
+      </div>
+      <div class="grant-right">
+        <div class="amount federal">$2.5B</div>
+        <div class="amount-label">Total program</div>
+      </div>
+    </div>
+
+    <div class="grant-card">
+      <div class="grant-left">
+        <div class="grant-title-row">
+          <div class="grant-name">Section 30C — AFV Refueling Property Credit</div>
+          <span class="grant-status status-active">Active through Jun 30, 2026</span>
+        </div>
+        <div class="grant-body">
+          <strong>30% tax credit</strong> (up to $100K per item) on depreciable costs for qualified alternative fuel vehicle refueling property. Covers <strong>LNG, CNG, and EV charging infrastructure</strong>. Prevailing wage and apprenticeship requirements apply. <strong>Natural fit for Apollo's terminal buildouts — claim this now.</strong> Deadline June 30, 2026.
+        </div>
+        <div class="grant-tags">
+          <span class="tag">Tax Credit</span>
+          <span class="tag">LNG / CNG / EV</span>
+          <span class="tag">$100K/item cap</span>
+          <span class="tag">Immediate Action</span>
+        </div>
+      </div>
+      <div class="grant-right">
+        <div class="amount federal">30%</div>
+        <div class="amount-label">Up to $100K/item</div>
+      </div>
+    </div>
+
+    <div class="grant-card">
+      <div class="grant-left">
+        <div class="grant-title-row">
+          <div class="grant-name">Alternative Fuels Tax Credit (§§ 6426/6427)</div>
+          <span class="grant-status status-watch">Expired — RNG Successor Proposed</span>
+        </div>
+        <div class="grant-body">
+          <strong>50¢/gallon</strong> incentive for CNG/LNG used as transportation fuel — expired end of 2024. Bipartisan <strong>Renewable Natural Gas Incentive Tax Credit</strong> (Senators Tillis &amp; Warner) proposes $1.00/gallon for RNG. Worth tracking for reinstatement — would be highly material to Apollo's fueling operations.
+        </div>
+        <div class="grant-tags">
+          <span class="tag">CNG / LNG</span>
+          <span class="tag">RNG</span>
+          <span class="tag">Legislation Watch</span>
+        </div>
+      </div>
+      <div class="grant-right">
+        <div class="amount federal">$1.00</div>
+        <div class="amount-label">Per gallon (proposed)</div>
+      </div>
+    </div>
+
+    <div class="grant-card">
+      <div class="grant-left">
+        <div class="grant-title-row">
+          <div class="grant-name">USDA REAP</div>
+          <span class="grant-status status-rolling">Rolling — Loans Open</span>
+        </div>
+        <div class="grant-body">
+          Rural Energy for America Program: grants up to <strong>50% of project costs (max $1M)</strong> for rural small businesses, plus guaranteed loans up to 75% of eligible costs (max $25M). Applicable to <strong>Apollo's rural terminal locations</strong> — Arkansas, Oklahoma, Tennessee operations. Grant applications closed Jul 1–Sep 30, 2025; <strong>loan applications rolling</strong>. Next grant window opens Oct 2025.
+        </div>
+        <div class="grant-tags">
+          <span class="tag">Rural Terminals</span>
+          <span class="tag">AR / OK / TN</span>
+          <span class="tag">50% Grant + 75% Loan</span>
+          <span class="tag">USDA</span>
+        </div>
+      </div>
+      <div class="grant-right">
+        <div class="amount federal">$25M</div>
+        <div class="amount-label">Max loan size</div>
+      </div>
+    </div>
+
+    <div class="grant-card">
+      <div class="grant-left">
+        <div class="grant-title-row">
+          <div class="grant-name">DOE SBIR / STTR</div>
+          <span class="grant-status status-rolling">Rolling</span>
+        </div>
+        <div class="grant-body">
+          Phase I awards up to <strong>$200K / 9 months</strong>; Phase II up to <strong>$1.1M / 2 years</strong>. DOE awards ~400 Phase I and 200 Phase II annually with $300M+ budget. Covers energy production, use, and environmental management. <strong>Potential fit for Apollo's OpenClaw/MoltBot/TMS V2 work</strong> if framed as R&amp;D in AI-driven energy logistics. Heavier lift — requires formal R&amp;D framing.
+        </div>
+        <div class="grant-tags">
+          <span class="tag">R&amp;D</span>
+          <span class="tag">AI / Automation</span>
+          <span class="tag">TMS V2</span>
+          <span class="tag">DOE</span>
+        </div>
+      </div>
+      <div class="grant-right">
+        <div class="amount federal">$1.1M</div>
+        <div class="amount-label">Phase II max</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TEXAS -->
+  <div class="section-header">
+    <span class="section-flag flag-texas">Texas</span>
+    <div class="section-title">Texas-Specific Programs</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="grants-grid">
+
+    <div class="grant-card texas">
+      <div class="grant-left">
+        <div class="grant-title-row">
+          <div class="grant-name">Texas Energy Fund (TxEF)</div>
+          <span class="grant-status status-active">Active</span>
+        </div>
+        <div class="grant-body">
+          Legislature appropriated <strong>$5B for FY2024–2025</strong> and an additional <strong>$4B for FY2026–2027</strong>. Funds grants and loans for construction, maintenance, and modernization of electric facilities. The <strong>Texas Backup Power Package</strong> is the angle for Apollo's generator services — funds standalone multi-day backup power for hospitals, nursing homes, and critical facilities. Direct match for Apollo's generator maintenance division.
+        </div>
+        <div class="grant-tags">
+          <span class="tag">Generator Services</span>
+          <span class="tag">Backup Power</span>
+          <span class="tag">Hospitals / Critical Facilities</span>
+          <span class="tag">PUC Texas</span>
+        </div>
+      </div>
+      <div class="grant-right">
+        <div class="amount texas">$9B</div>
+        <div class="amount-label">FY24–27 total</div>
+      </div>
+    </div>
+
+    <div class="grant-card texas">
+      <div class="grant-left">
+        <div class="grant-title-row">
+          <div class="grant-name">TCEQ AFFP — Alternative Fueling Facilities</div>
+          <span class="grant-status status-watch">Cycle Closed — Watch Next Round</span>
+        </div>
+        <div class="grant-body">
+          <strong>$12M available</strong> for alternative fueling facilities in the 88-county Clean Transportation Zone. Up to <strong>$600K or 50% of eligible costs per project</strong>. Eligible fuels: CNG, LNG, hydrogen, biodiesel, propane, and EV. Jan 2026 deadline passed — <strong>program cycles regularly, position Apollo for next round.</strong>
+        </div>
+        <div class="grant-tags">
+          <span class="tag">LNG / CNG</span>
+          <span class="tag">88-County CTZ</span>
+          <span class="tag">Up to $600K</span>
+          <span class="tag">TCEQ</span>
+        </div>
+      </div>
+      <div class="grant-right">
+        <div class="amount texas">$600K</div>
+        <div class="amount-label">Per project max</div>
+      </div>
+    </div>
+
+    <div class="grant-card texas">
+      <div class="grant-left">
+        <div class="grant-title-row">
+          <div class="grant-name">TCEQ TERP — Gov't Alt Fuel Fleet (GAFF)</div>
+          <span class="grant-status status-active">Active</span>
+        </div>
+        <div class="grant-body">
+          Funding for government entities to purchase/lease vehicles on CNG, LNG, LPG, hydrogen, or electricity. <strong>Less direct for Apollo as a service company</strong>, but Apollo's government clients (municipalities, counties, state agencies) can leverage this — and Apollo can position as the preferred fueling and maintenance partner for the transition.
+        </div>
+        <div class="grant-tags">
+          <span class="tag">Fleet Transition</span>
+          <span class="tag">Gov't Clients</span>
+          <span class="tag">Partnership Angle</span>
+          <span class="tag">TCEQ</span>
+        </div>
+      </div>
+      <div class="grant-right">
+        <div class="amount texas">—</div>
+        <div class="amount-label">Indirect opportunity</div>
+      </div>
+    </div>
+
+    <div class="grant-card texas">
+      <div class="grant-left">
+        <div class="grant-title-row">
+          <div class="grant-name">PACE — Property Assessed Clean Energy</div>
+          <span class="grant-status status-active">Active</span>
+        </div>
+        <div class="grant-body">
+          Low-cost, long-term financing for energy efficiency improvements to <strong>commercial and industrial properties</strong>. Repayment through property tax assessment — no upfront capital required. <strong>Could finance Apollo terminal upgrades</strong> — fueling infrastructure, efficiency improvements, EV charger installation at owned/leased commercial properties.
+        </div>
+        <div class="grant-tags">
+          <span class="tag">Terminal Upgrades</span>
+          <span class="tag">Financing</span>
+          <span class="tag">Commercial Property</span>
+        </div>
+      </div>
+      <div class="grant-right">
+        <div class="amount texas">Low-cost</div>
+        <div class="amount-label">Financing instrument</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- LOUISIANA / OKLAHOMA -->
+  <div class="section-header">
+    <span class="section-flag flag-state">Louisiana &amp; Oklahoma</span>
+    <div class="section-title">State-Level Programs</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="grants-grid">
+
+    <div class="grant-card state">
+      <div class="grant-left">
+        <div class="grant-title-row">
+          <div class="grant-name">Louisiana — NEVI + 30C</div>
+          <span class="grant-status status-active">Active</span>
+        </div>
+        <div class="grant-body">
+          Louisiana receives <strong>$73.4M through FY2026</strong> via IIJA for EV infrastructure. Building out a competitive grant program for EVSE deployment. <strong>30C commercial EV charging tax credit</strong> (up to $100K/port) available through June 30, 2026. Louisiana EECBG awards $100K–$200K for local government energy efficiency projects — <strong>Apollo can partner as a service provider</strong>.
+        </div>
+        <div class="grant-tags">
+          <span class="tag">Louisiana</span>
+          <span class="tag">EV Charging</span>
+          <span class="tag">Gov't Partnership</span>
+          <span class="tag">30C Credit</span>
+        </div>
+      </div>
+      <div class="grant-right">
+        <div class="amount state">$73.4M</div>
+        <div class="amount-label">State NEVI allocation</div>
+      </div>
+    </div>
+
+    <div class="grant-card state">
+      <div class="grant-left">
+        <div class="grant-title-row">
+          <div class="grant-name">Oklahoma — Federal Programs + CNG Position</div>
+          <span class="grant-status status-rolling">Rolling</span>
+        </div>
+        <div class="grant-body">
+          Oklahoma is thinner on state-level grants. Main play: <strong>NEVI, CFI, 30C, and REAP applied to Oklahoma projects</strong>. Oklahoma ranks among the <strong>top states for CNG station density</strong>, which positions Apollo's Tulsa terminal well for federal alternative fuel corridor funding. No additional state programs identified — federal programs are the primary vehicle here.
+        </div>
+        <div class="grant-tags">
+          <span class="tag">Oklahoma</span>
+          <span class="tag">Tulsa Terminal</span>
+          <span class="tag">CNG Corridor</span>
+          <span class="tag">Federal Only</span>
+        </div>
+      </div>
+      <div class="grant-right">
+        <div class="amount state">Federal</div>
+        <div class="amount-label">Primary vehicle</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PRIORITY -->
+  <div class="priority-section">
+    <div class="priority-label">Strategic Guidance</div>
+    <div class="priority-title">Highest-ROI Targets for Apollo</div>
+    <ul class="priority-list">
+      <li class="priority-item">
+        <div class="priority-num">1</div>
+        <div class="priority-text"><strong>Section 30C tax credits</strong> on any LNG/CNG/EV fueling infrastructure installed at Apollo terminals — straightforward, available now, expires June 30, 2026. Claim on every qualifying installation immediately.</div>
+      </li>
+      <li class="priority-item">
+        <div class="priority-num">2</div>
+        <div class="priority-text"><strong>NEVI subcontracting</strong> through L-Charge or other CPOs as Texas releases its Q2/Q3 2026 solicitation. Apollo's installation and field services capability is the differentiator.</div>
+      </li>
+      <li class="priority-item">
+        <div class="priority-num">3</div>
+        <div class="priority-text"><strong>USDA REAP</strong> for rural terminal capex in Arkansas, Oklahoma, and Tennessee — 50% grant + 75% guaranteed loan structure is highly favorable for capital-intensive terminal builds.</div>
+      </li>
+      <li class="priority-item">
+        <div class="priority-num">4</div>
+        <div class="priority-text"><strong>Texas Backup Power Package (TxEF)</strong> for Apollo's generator services division — hospitals and critical facilities are the target customers, and the program funds exactly the multi-day standby power Apollo installs and maintains.</div>
+      </li>
+      <li class="priority-item">
+        <div class="priority-num">5</div>
+        <div class="priority-text"><strong>TCEQ AFFP next cycle</strong> — watch for the next application window. Position Apollo's LNG/CNG fueling infrastructure in the 88-county CTZ now; be ready to apply day one of the next round.</div>
+      </li>
+      <li class="priority-item">
+        <div class="priority-num">6</div>
+        <div class="priority-text"><strong>DOE SBIR (longer-term)</strong> — worth exploring if Apollo formalizes the AI/automation work (OpenClaw, TMS V2, MoltBot) into a fundable R&amp;D proposal. Heavier lift but $200K–$1.1M available for genuine innovation.</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">Apollo Energy Group · Grant Intelligence · 2026-03-24</div>
+    <div class="footer-right">Prepared internally — not legal or financial advice. Verify program status before application.</div>
+  </footer>
+
+</div>
+</body>
+</html>
