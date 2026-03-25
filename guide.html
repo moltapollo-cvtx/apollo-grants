@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Apollo Energy Group — National Grant Guide 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #080d18;
+  --surface: #0f1624;
+  --surface2: #141d2e;
+  --surface3: #1a2538;
+  --border: rgba(255,255,255,0.06);
+  --border-med: rgba(255,255,255,0.10);
+  --teal: #1ec8be;
+  --teal-dim: rgba(30,200,190,0.12);
+  --teal-glow: rgba(30,200,190,0.06);
+  --green: #34d399;
+  --green-dim: rgba(52,211,153,0.12);
+  --amber: #f59e0b;
+  --amber-dim: rgba(245,158,11,0.12);
+  --red: #f87171;
+  --red-dim: rgba(248,113,113,0.12);
+  --blue: #60a5fa;
+  --blue-dim: rgba(96,165,250,0.12);
+  --violet: #a78bfa;
+  --violet-dim: rgba(167,139,250,0.12);
+  --text: #eef2f7;
+  --text-2: #8fa3bf;
+  --text-3: #4a6080;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Outfit', sans-serif;
+  --r: 14px;
+  --r-sm: 9px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* Mesh bg */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 40% at 5% 5%, rgba(30,200,190,0.055) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 60% at 95% 90%, rgba(52,211,153,0.04) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 30% at 50% 50%, rgba(96,165,250,0.025) 0%, transparent 60%);
+  pointer-events: none; z-index: 0;
+}
+
+/* ── STICKY NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(8,13,24,0.88);
+  backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+}
+
+.nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; gap: 0;
+  height: 52px;
+  overflow-x: auto;
+}
+
+.nav-inner::-webkit-scrollbar { display: none; }
+
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  margin-right: 28px; flex-shrink: 0;
+}
+.nav-logo img { width: 28px; height: 28px; border-radius: 7px; object-fit: contain; background: #fff; padding: 2px; }
+.nav-logo span { font-size: 13px; font-weight: 700; color: var(--text); white-space: nowrap; }
+
+.nav-links { display: flex; gap: 2px; flex-shrink: 0; }
+.nav-link {
+  font-size: 12px; font-weight: 500;
+  color: var(--text-3);
+  padding: 6px 12px; border-radius: 7px;
+  text-decoration: none; white-space: nowrap;
+  transition: color 0.15s, background 0.15s;
+}
+.nav-link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+.nav-link.active { color: var(--teal); background: var(--teal-dim); }
+
+/* ── WRAPPER ── */
+.wrap { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+/* ── HERO ── */
+.hero {
+  padding: 52px 0 44px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: start;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-logo {
+  width: 96px; height: 96px;
+  border-radius: 22px; overflow: hidden;
+  border: 1px solid rgba(30,200,190,0.25);
+  box-shadow: 0 0 40px rgba(30,200,190,0.1), inset 0 1px 0 rgba(255,255,255,0.07);
+  background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.hero-logo img { width: 100%; height: 100%; object-fit: contain; padding: 7px; }
+
+.hero-left { display: flex; flex-direction: column; gap: 10px; }
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--teal);
+}
+
+h1 {
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 800;
+  letter-spacing: -0.035em; line-height: 1.05;
+}
+h1 em { font-style: normal; color: var(--teal); }
+
+.hero-sub {
+  font-size: 15px; color: var(--text-2);
+  max-width: 70ch; line-height: 1.65;
+}
+
+.hero-meta {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.meta-pill {
+  font-family: var(--mono);
+  font-size: 11px; font-weight: 500;
+  padding: 4px 10px; border-radius: 20px;
+  display: flex; align-items: center; gap: 6px;
+}
+.meta-pill::before { content: ''; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.pill-teal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(30,200,190,0.2); }
+.pill-teal::before { background: var(--teal); box-shadow: 0 0 6px var(--teal); animation: pulse 2s infinite; }
+.pill-amber { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(245,158,11,0.2); }
+.pill-amber::before { background: var(--amber); }
+.pill-red { background: var(--red-dim); color: var(--red); border: 1px solid rgba(248,113,113,0.2); }
+.pill-red::before { background: var(--red); }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* ── ALERT BANNER ── */
+.alert-banner {
+  margin: 28px 0;
+  background: linear-gradient(135deg, rgba(248,113,113,0.07), rgba(245,158,11,0.05));
+  border: 1px solid rgba(248,113,113,0.2);
+  border-left: 3px solid var(--red);
+  border-radius: var(--r);
+  padding: 20px 24px;
+}
+
+.alert-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 14px;
+}
+
+.alert-badge {
+  font-family: var(--mono);
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  background: var(--red-dim); color: var(--red);
+  border: 1px solid rgba(248,113,113,0.25);
+  padding: 3px 8px; border-radius: 5px;
+}
+
+.alert-title { font-size: 15px; font-weight: 700; color: var(--text); }
+
+.alert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px;
+}
+
+.alert-item {
+  background: rgba(248,113,113,0.05);
+  border: 1px solid rgba(248,113,113,0.1);
+  border-radius: var(--r-sm);
+  padding: 12px 14px;
+  font-size: 13px; color: var(--text-2); line-height: 1.5;
+}
+.alert-item strong { color: var(--red); font-weight: 600; }
+.alert-item.ok { background: rgba(52,211,153,0.05); border-color: rgba(52,211,153,0.12); }
+.alert-item.ok strong { color: var(--green); }
+
+/* ── STAT STRIP ── */
+.stat-strip {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: var(--r);
+  overflow: hidden; margin-bottom: 40px;
+}
+
+.stat-cell {
+  background: var(--surface); padding: 18px 20px;
+  display: flex; flex-direction: column; gap: 3px;
+  transition: background 0.2s;
+}
+.stat-cell:hover { background: var(--surface2); }
+.stat-label { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; color: var(--text-3); }
+.stat-val { font-family: var(--mono); font-size: 20px; font-weight: 700; letter-spacing: -0.02em; color: var(--teal); }
+.stat-note { font-size: 11px; color: var(--text-3); }
+
+/* ── SECTION ── */
+.section { margin-bottom: 52px; }
+
+.section-head {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 20px;
+}
+
+.section-flag {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.13em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 6px; white-space: nowrap;
+}
+.f-red    { background: var(--red-dim);    color: var(--red);    border: 1px solid rgba(248,113,113,0.2); }
+.f-teal   { background: var(--teal-dim);   color: var(--teal);   border: 1px solid rgba(30,200,190,0.2); }
+.f-green  { background: var(--green-dim);  color: var(--green);  border: 1px solid rgba(52,211,153,0.2); }
+.f-amber  { background: var(--amber-dim);  color: var(--amber);  border: 1px solid rgba(245,158,11,0.2); }
+.f-blue   { background: var(--blue-dim);   color: var(--blue);   border: 1px solid rgba(96,165,250,0.2); }
+.f-violet { background: var(--violet-dim); color: var(--violet); border: 1px solid rgba(167,139,250,0.2); }
+
+.section-title-text { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
+.section-hr { flex: 1; height: 1px; background: var(--border); }
+
+/* ── PRIORITY CARDS (top 3) ── */
+.priority-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 14px; margin-bottom: 40px;
+}
+
+.priority-card {
+  border-radius: var(--r); padding: 24px 26px;
+  display: flex; flex-direction: column; gap: 12px;
+  position: relative; overflow: hidden;
+  border: 1px solid var(--border);
+  transition: transform 0.2s, border-color 0.2s;
+  cursor: default;
+}
+.priority-card:hover { transform: translateY(-2px); border-color: var(--border-med); }
+
+.pc-1 { background: linear-gradient(135deg, rgba(30,200,190,0.08), rgba(30,200,190,0.03)); border-color: rgba(30,200,190,0.18); }
+.pc-2 { background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.03)); border-color: rgba(245,158,11,0.18); }
+.pc-3 { background: linear-gradient(135deg, rgba(96,165,250,0.08), rgba(96,165,250,0.03)); border-color: rgba(96,165,250,0.18); }
+
+.pc-num {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 8px;
+}
+.pc-1 .pc-num { color: var(--teal); }
+.pc-2 .pc-num { color: var(--amber); }
+.pc-3 .pc-num { color: var(--blue); }
+
+.pc-deadline {
+  font-family: var(--mono); font-size: 10px;
+  padding: 2px 8px; border-radius: 5px; margin-left: auto;
+}
+.pc-1 .pc-deadline { background: var(--teal-dim); color: var(--teal); }
+.pc-2 .pc-deadline { background: var(--amber-dim); color: var(--amber); }
+.pc-3 .pc-deadline { background: var(--blue-dim); color: var(--blue); }
+
+.pc-title { font-size: 16px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; }
+.pc-amount { font-family: var(--mono); font-size: 22px; font-weight: 700; letter-spacing: -0.03em; }
+.pc-1 .pc-amount { color: var(--teal); }
+.pc-2 .pc-amount { color: var(--amber); }
+.pc-3 .pc-amount { color: var(--blue); }
+.pc-amount span { font-size: 13px; color: var(--text-3); }
+
+.pc-body { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+.pc-body strong { color: var(--text); font-weight: 600; }
+
+.pc-path {
+  font-size: 12px; color: var(--text-3);
+  padding-top: 10px; border-top: 1px solid var(--border);
+  font-family: var(--mono);
+}
+
+/* ── PROGRAM CARDS ── */
+.program-stack { display: flex; flex-direction: column; gap: 3px; }
+
+.program-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 0;
+  overflow: hidden;
+  transition: border-color 0.2s, background 0.2s;
+  animation: fadeUp 0.35s cubic-bezier(0.16,1,0.3,1) both;
+}
+.program-card:hover { border-color: var(--border-med); background: var(--surface2); }
+.program-card:nth-child(1) { animation-delay: 0.04s; }
+.program-card:nth-child(2) { animation-delay: 0.08s; }
+.program-card:nth-child(3) { animation-delay: 0.12s; }
+.program-card:nth-child(4) { animation-delay: 0.16s; }
+.program-card:nth-child(5) { animation-delay: 0.20s; }
+.program-card:nth-child(6) { animation-delay: 0.24s; }
+.program-card:nth-child(7) { animation-delay: 0.28s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.pc-inner {
+  padding: 22px 28px;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 16px; align-items: start;
+}
+
+.pc-left { display: flex; flex-direction: column; gap: 9px; }
+.pc-header { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+.pc-name { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+
+.status-pill {
+  font-family: var(--mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.09em; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 4px;
+}
+.s-active  { background: var(--green-dim); color: var(--green); border: 1px solid rgba(52,211,153,0.2); }
+.s-watch   { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(245,158,11,0.2); }
+.s-expired { background: rgba(74,85,104,0.3); color: var(--text-3); border: 1px solid var(--border); }
+.s-rolling { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(30,200,190,0.2); }
+.s-limbo   { background: var(--red-dim); color: var(--red); border: 1px solid rgba(248,113,113,0.2); }
+.s-urgent  { background: rgba(248,113,113,0.18); color: #ff6b6b; border: 1px solid rgba(248,113,113,0.3); }
+
+.pc-desc { font-size: 13px; color: var(--text-2); line-height: 1.65; max-width: 80ch; }
+.pc-desc strong { color: var(--text); font-weight: 600; }
+
+.pc-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.tag {
+  font-size: 11px; padding: 2px 8px; border-radius: 4px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border); color: var(--text-3); font-weight: 500;
+}
+
+.pc-right {
+  display: flex; flex-direction: column; align-items: flex-end; gap: 4px;
+  min-width: 110px; flex-shrink: 0;
+}
+.amt {
+  font-family: var(--mono); font-size: 16px; font-weight: 700;
+  letter-spacing: -0.02em; text-align: right;
+}
+.amt-label { font-family: var(--mono); font-size: 10px; color: var(--text-3); text-align: right; text-transform: uppercase; letter-spacing: 0.06em; }
+.c-teal   { color: var(--teal); }
+.c-green  { color: var(--green); }
+.c-amber  { color: var(--amber); }
+.c-blue   { color: var(--blue); }
+.c-violet { color: var(--violet); }
+.c-red    { color: var(--red); }
+
+/* ── ACCENT BAR on left ── */
+.program-card.bar-teal   { border-left: 3px solid var(--teal); }
+.program-card.bar-green  { border-left: 3px solid var(--green); }
+.program-card.bar-amber  { border-left: 3px solid var(--amber); }
+.program-card.bar-blue   { border-left: 3px solid var(--blue); }
+.program-card.bar-violet { border-left: 3px solid var(--violet); }
+.program-card.bar-red    { border-left: 3px solid var(--red); }
+
+/* ── NEVI TABLE ── */
+.table-wrap {
+  border: 1px solid var(--border); border-radius: var(--r);
+  overflow: hidden; margin-top: 16px;
+}
+
+table { width: 100%; border-collapse: collapse; }
+thead th {
+  background: var(--surface2);
+  font-family: var(--mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-3); padding: 12px 16px;
+  text-align: left; border-bottom: 1px solid var(--border);
+}
+tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: var(--surface2); }
+tbody td { padding: 13px 16px; font-size: 13px; color: var(--text-2); vertical-align: top; }
+tbody td:first-child { color: var(--text); font-weight: 600; }
+tbody td strong { color: var(--text); }
+.td-amt { font-family: var(--mono); font-weight: 700; color: var(--teal); white-space: nowrap; }
+.td-badge {
+  font-family: var(--mono); font-size: 10px; font-weight: 600;
+  padding: 2px 7px; border-radius: 4px; white-space: nowrap;
+}
+
+/* ── STATE CARDS ── */
+.state-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.state-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r); overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.state-card:hover { border-color: var(--border-med); transform: translateY(-1px); }
+
+.state-header {
+  padding: 18px 22px 14px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px;
+}
+.state-abbr {
+  font-family: var(--mono); font-size: 22px; font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.state-info { flex: 1; }
+.state-name { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+.state-sub  { font-size: 12px; color: var(--text-3); margin-top: 1px; }
+.state-priority {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  padding: 3px 8px; border-radius: 5px; letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.pri-1 { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(30,200,190,0.2); }
+.pri-2 { background: var(--green-dim); color: var(--green); border: 1px solid rgba(52,211,153,0.2); }
+.pri-3 { background: var(--blue-dim); color: var(--blue); border: 1px solid rgba(96,165,250,0.2); }
+.pri-4 { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(245,158,11,0.2); }
+.pri-5 { background: var(--violet-dim); color: var(--violet); border: 1px solid rgba(167,139,250,0.2); }
+
+.state-body { padding: 14px 22px 18px; display: flex; flex-direction: column; gap: 8px; }
+.state-program {
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 10px 12px; border-radius: var(--r-sm);
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--border);
+}
+.sp-name { font-size: 13px; font-weight: 600; }
+.sp-desc { font-size: 12px; color: var(--text-2); line-height: 1.5; }
+.sp-amount { font-family: var(--mono); font-size: 12px; font-weight: 700; margin-top: 2px; }
+
+/* ── O&M FUNDING TABLE ── */
+.om-table th { background: var(--surface3); }
+.yes-cell { color: var(--green); font-weight: 600; font-family: var(--mono); font-size: 12px; }
+.no-cell  { color: var(--text-3); font-family: var(--mono); font-size: 12px; }
+.ltd-cell { color: var(--amber);  font-family: var(--mono); font-size: 12px; }
+
+/* ── ROADMAP ── */
+.roadmap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r); overflow: hidden;
+  margin-bottom: 52px;
+}
+
+.roadmap-header {
+  background: linear-gradient(135deg, rgba(30,200,190,0.08), rgba(52,211,153,0.04));
+  border-bottom: 1px solid var(--border);
+  padding: 22px 28px;
+}
+
+.roadmap-title { font-size: 18px; font-weight: 800; letter-spacing: -0.025em; }
+.roadmap-sub { font-size: 13px; color: var(--text-2); margin-top: 3px; }
+
+.roadmap-phases { display: grid; grid-template-columns: repeat(4, 1fr); }
+
+.phase {
+  padding: 22px 20px;
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 14px;
+}
+.phase:last-child { border-right: none; }
+
+.phase-label {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+}
+.ph-1 .phase-label { color: var(--red); }
+.ph-2 .phase-label { color: var(--amber); }
+.ph-3 .phase-label { color: var(--teal); }
+.ph-4 .phase-label { color: var(--green); }
+
+.phase-period { font-size: 12px; color: var(--text-3); font-weight: 500; }
+
+.phase-actions { display: flex; flex-direction: column; gap: 7px; }
+
+.action-item {
+  display: flex; gap: 9px; align-items: start;
+  font-size: 12px; color: var(--text-2); line-height: 1.5;
+}
+.action-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  margin-top: 5px; flex-shrink: 0;
+}
+.ph-1 .action-dot { background: var(--red); }
+.ph-2 .action-dot { background: var(--amber); }
+.ph-3 .action-dot { background: var(--teal); }
+.ph-4 .action-dot { background: var(--green); }
+.action-item strong { color: var(--text); font-weight: 600; }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 0 40px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 10px;
+}
+.footer-l { font-family: var(--mono); font-size: 12px; color: var(--text-3); }
+.footer-r { font-size: 12px; color: var(--text-3); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .wrap { padding: 0 20px; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-logo { width: 72px; height: 72px; }
+  .priority-grid { grid-template-columns: 1fr; }
+  .stat-strip { grid-template-columns: repeat(3, 1fr); }
+  .state-grid { grid-template-columns: 1fr; }
+  .roadmap-phases { grid-template-columns: repeat(2, 1fr); }
+  .phase { border-bottom: 1px solid var(--border); border-right: none; }
+  .phase:nth-child(odd) { border-right: 1px solid var(--border); }
+  nav { padding: 0 16px; }
+}
+
+@media (max-width: 600px) {
+  .stat-strip { grid-template-columns: repeat(2, 1fr); }
+  .roadmap-phases { grid-template-columns: 1fr; }
+  .phase { border-right: none; }
+  h1 { font-size: 26px; }
+  .pc-inner { grid-template-columns: 1fr; }
+  .pc-right { align-items: flex-start; flex-direction: row; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="apollo-logo.jpg" alt="Apollo"/>
+      <span>Apollo Energy Group</span>
+    </div>
+    <div class="nav-links">
+      <a class="nav-link active" href="#immediate">Immediate Action</a>
+      <a class="nav-link" href="#federal">Federal</a>
+      <a class="nav-link" href="#nevi">NEVI</a>
+      <a class="nav-link" href="#fema">FEMA</a>
+      <a class="nav-link" href="#facility">Federal Facilities</a>
+      <a class="nav-link" href="#states">States</a>
+      <a class="nav-link" href="#existing">TX/OK/LA/AR/TN</a>
+      <a class="nav-link" href="#om-table">O&amp;M Funding</a>
+      <a class="nav-link" href="#roadmap">Roadmap</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="eyebrow">National Grant Intelligence Report · FY 2026</div>
+      <h1>Government Funding for<br/><em>Apollo Energy Group</em></h1>
+      <div class="hero-sub">A ~$5M revenue, 7-employee energy services company performing O&amp;M on generators, LNG/CNG infrastructure, EV charging stations, and backup power systems across Texas, Oklahoma, Arkansas, Louisiana, Tennessee — and expansion targets Virginia, Nevada, Arizona, Washington, Oregon, and New Mexico.</div>
+      <div class="hero-meta">
+        <span class="meta-pill pill-teal">Programs Identified: 40+</span>
+        <span class="meta-pill pill-amber">Policy Landscape: Shifted mid-2025</span>
+        <span class="meta-pill pill-red">Critical Deadline: Jun 30 2026</span>
+      </div>
+    </div>
+    <div class="hero-logo">
+      <img src="apollo-logo.jpg" alt="Apollo Energy Group"/>
+    </div>
+  </section>
+
+  <!-- ALERT BANNER -->
+  <div class="alert-banner">
+    <div class="alert-header">
+      <span class="alert-badge">Policy Shift</span>
+      <div class="alert-title">The One Big Beautiful Bill Act (OBBBA, July 4 2025) — What Changed</div>
+    </div>
+    <div class="alert-grid">
+      <div class="alert-item"><strong>Section 30C moved up:</strong> Expiration date shifted from Dec 31, 2032 → June 30, 2026. Three months remaining.</div>
+      <div class="alert-item"><strong>DOE SBIR/STTR lapsed:</strong> Authorization expired Oct 1, 2025. All future funding opportunities paused.</div>
+      <div class="alert-item"><strong>DOE reorganized:</strong> OCED, EERE, and Grid Deployment Office merged. Loan Programs Office rebranded as "Energy Dominance Financing."</div>
+      <div class="alert-item"><strong>FEMA BRIC suspended:</strong> FY2024 NOFO canceled. Federal judge issued permanent injunction Dec 11, 2025. New NOFO expected "in coming months."</div>
+      <div class="alert-item ok"><strong>NEVI survived:</strong> January 2025 EO pause overturned. FHWA issued revised interim guidance Aug 2025. States proceeding under streamlined rules.</div>
+      <div class="alert-item ok"><strong>Still strong:</strong> BIL grid resilience formula grants, NEVI formula funds, state-administered programs, FEMA HMGP, and state-level incentives remain intact.</div>
+    </div>
+  </div>
+
+  <!-- STAT STRIP -->
+  <div class="stat-strip">
+    <div class="stat-cell">
+      <div class="stat-label">Total Addressable</div>
+      <div class="stat-val">$15B+</div>
+      <div class="stat-note">Across all identified programs</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Active / Open</div>
+      <div class="stat-val">25+</div>
+      <div class="stat-note">Currently accepting</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Critical Deadline</div>
+      <div class="stat-val">Jun 30</div>
+      <div class="stat-note">Section 30C expires</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">States Covered</div>
+      <div class="stat-val">10</div>
+      <div class="stat-note">Existing + expansion</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Top Target</div>
+      <div class="stat-val">$1.8B</div>
+      <div class="stat-note">Texas TBPP program</div>
+    </div>
+  </div>
+
+  <!-- IMMEDIATE ACTION -->
+  <section id="immediate" class="section">
+    <div class="section-head">
+      <span class="section-flag f-red">Immediate Action</span>
+      <div class="section-title-text">Three Opportunities Demand Action Now</div>
+      <div class="section-hr"></div>
+    </div>
+
+    <div class="priority-grid">
+      <div class="priority-card pc-1">
+        <div class="pc-num">
+          Priority 1
+          <span class="pc-deadline">Spring 2026</span>
+        </div>
+        <div class="pc-title">Texas Backup Power Package Program (TBPP)</div>
+        <div class="pc-amount">$1.8B <span>Texas Energy Fund</span></div>
+        <div class="pc-body">Grants up to <strong>$500/kW</strong> and forgivable loans to critical facilities — hospitals, nursing homes, emergency shelters. Loan funds explicitly cover <strong>O&amp;M and preventative maintenance services.</strong> PUCT will maintain an approved vendor list. Rulemaking under Project No. 59024; final rules expected spring 2026, applications late 2026, first awards 2027. <strong>Position Apollo as approved vendor now.</strong></div>
+        <div class="pc-path">Agency: PUCT · txenergyfund.texas.gov/TBPP · Path: Become approved vendor</div>
+      </div>
+
+      <div class="priority-card pc-2">
+        <div class="pc-num">
+          Priority 2
+          <span class="pc-deadline">Jun 30 2026</span>
+        </div>
+        <div class="pc-title">Section 30C — Alt Fuel Refueling Property Credit</div>
+        <div class="pc-amount">30% <span>up to $100K/port</span></div>
+        <div class="pc-body"><strong>30% of cost</strong> (up to $100K per port/dispenser) for EV charging, CNG, and LNG refueling infrastructure in eligible census tracts. Prevailing wage + apprenticeship = 30%; without PWA = 6%. Covers both <strong>hardware and installation labor.</strong> <strong>Accelerate every qualifying installation into the next 90 days.</strong> Both Apollo's own capex and clients claiming on Apollo's installation work qualify.</div>
+        <div class="pc-path">Agency: IRS · irs.gov/credits-deductions/30C · Path: Direct + client pass-through</div>
+      </div>
+
+      <div class="priority-card pc-3">
+        <div class="pc-num">
+          Priority 3
+          <span class="pc-deadline">Apr 2 2026</span>
+        </div>
+        <div class="pc-title">DOE SPARK / GRIP Round 3</div>
+        <div class="pc-amount">$1.9B <span>Grid resilience</span></div>
+        <div class="pc-body">Grid resilience, smart grid, and grid innovation. Awards <strong>$10M–$100M</strong>. Apollo cannot lead but should <strong>immediately identify utility or government partners</strong> submitting concept papers and offer to serve as O&amp;M subcontractor. Concept papers due <strong>April 2, 2026</strong>. Full applications due May 20, 2026.</div>
+        <div class="pc-path">Agency: DOE Grid Deployment Office · Path: Indirect — subcontractor to awardees</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEDERAL PROGRAMS -->
+  <section id="federal" class="section">
+    <div class="section-head">
+      <span class="section-flag f-teal">Federal</span>
+      <div class="section-title-text">Federal Programs — Direct &amp; Indirect Pathways</div>
+      <div class="section-hr"></div>
+    </div>
+
+    <div class="program-stack">
+
+      <div id="nevi" class="program-card bar-teal">
+        <div class="pc-inner">
+          <div class="pc-left">
+            <div class="pc-header">
+              <div class="pc-name">NEVI Formula Program — Maintenance Mandate</div>
+              <span class="status-pill s-active">Active — TX Q2/Q3 2026</span>
+            </div>
+            <div class="pc-desc">Every NEVI-funded station must maintain <strong>&gt;97% average annual uptime per port</strong> on a 12-month rolling basis. NEVI funds directly cover <strong>O&amp;M costs for up to 5 years</strong> after station commissioning, including hardware/software maintenance, repair costs, and service agreements. All technicians must hold <strong>EVITP certification</strong> or equivalent. Station operators can delegate maintenance to subcontractors. Approximately <strong>4,000 NEVI-funded DCFC ports</strong> awarded nationally across ~990 sites — at $600–800+/port annually, this is a substantial recurring revenue market.
+            <br/><br/>
+            The EV Charger Reliability and Accessibility Accelerator (EVC-RAA) specifically funds repair or replacement of broken existing chargers. Washington State ($9.5M) and Oregon ($10M) programs open to private entities.</div>
+            <div class="pc-tags">
+              <span class="tag">5-yr O&amp;M funded</span><span class="tag">EVITP required</span><span class="tag">97% uptime mandate</span><span class="tag">Subcontract path</span>
+            </div>
+            <!-- NEVI STATE TABLE -->
+            <div class="table-wrap" style="margin-top:14px;">
+              <table>
+                <thead>
+                  <tr><th>State</th><th>Allocation</th><th>Status</th><th>Key Detail</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Texas</td><td class="td-amt">$408M</td><td><span class="td-badge s-active">Phase 2 RFP Q2/Q3 2026</span></td><td>Largest allocation nationally; $84.6M unobligated funds lost</td></tr>
+                  <tr><td>Virginia</td><td class="td-amt">~$100M</td><td><span class="td-badge s-active">FY2026 plan approved</span></td><td>Solicitation expected Q1 2026; corridors I-64, I-81, I-85, I-95</td></tr>
+                  <tr><td>Washington</td><td class="td-amt">~$71M</td><td><span class="td-badge s-active">Round 1 awarded Jan 2026</span></td><td>$12.16M to 5 companies for 14 stations; Round 2 planned 2026</td></tr>
+                  <tr><td>Arizona</td><td class="td-amt">$76.5M</td><td><span class="td-badge s-active">Phase 2 RFP Oct 2025</span></td><td>Conditional awards expected May 2026; ADOT can withhold O&amp;M funds for non-compliance</td></tr>
+                  <tr><td>Oregon</td><td class="td-amt">~$40M+</td><td><span class="td-badge s-active">Round 2 Fall 2025</span></td><td>~60 sites across 11 corridors; first stations operational early 2026</td></tr>
+                  <tr><td>New Mexico</td><td class="td-amt">$38M</td><td><span class="td-badge s-active">8 stations operational</span></td><td>Phase 3 closed; future phases expected</td></tr>
+                  <tr><td>Nevada</td><td class="td-amt">~$38M</td><td><span class="td-badge s-active">Plan approved Sept 2025</span></td><td>Solicitation expected Q1 2026; partnering with NV Energy; only ~$12.4M spent</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="pc-right">
+            <div class="amt c-teal">$5B</div>
+            <div class="amt-label">Total program</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="program-card bar-blue">
+        <div class="pc-inner">
+          <div class="pc-left">
+            <div class="pc-header">
+              <div class="pc-name">CFI Discretionary Grant Program</div>
+              <span class="status-pill s-watch">Paused — Watch for NOFO</span>
+            </div>
+            <div class="pc-desc">Covers <strong>EV charging, CNG, LNG, and hydrogen fueling infrastructure</strong> — not just EV. No estimated date for next NOFO as of March 2026, but program remains authorized. Directly applicable to Apollo's full service mix across all corridors. Community charging and corridor charging both covered.</div>
+            <div class="pc-tags"><span class="tag">LNG / CNG / EV / H₂</span><span class="tag">Corridor + Community</span><span class="tag">Paused EO</span></div>
+          </div>
+          <div class="pc-right">
+            <div class="amt c-blue">$2.5B</div>
+            <div class="amt-label">Total authorized</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="fema" class="program-card bar-amber">
+        <div class="pc-inner">
+          <div class="pc-left">
+            <div class="pc-header">
+              <div class="pc-name">FEMA BRIC — Building Resilient Infrastructure &amp; Communities</div>
+              <span class="status-pill s-limbo">Suspended — Court Order Active</span>
+            </div>
+            <div class="pc-desc">Previously funded <strong>$500M–$1B+ annually</strong> for pre-disaster mitigation. Generators at hospitals, fire stations, water/sewer treatment, and EOCs explicitly eligible at <strong>75% federal cost share.</strong> FEMA attempted termination April 2025; federal judge issued permanent injunction December 11, 2025. As of March 2026, FEMA must comply but has provided no timetable. New NOFO expected "in coming months." <strong>When restored, position Apollo as installation/maintenance subcontractor to local government applicants.</strong></div>
+            <div class="pc-tags"><span class="tag">Generators eligible</span><span class="tag">75% federal share</span><span class="tag">Partner with local gov't</span><span class="tag">Monitoring required</span></div>
+          </div>
+          <div class="pc-right">
+            <div class="amt c-amber">$1B+</div>
+            <div class="amt-label">Annual (historic)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="program-card bar-green">
+        <div class="pc-inner">
+          <div class="pc-left">
+            <div class="pc-header">
+              <div class="pc-name">FEMA HMGP — Hazard Mitigation Grant Program</div>
+              <span class="status-pill s-active">Active — Disaster Triggered</span>
+            </div>
+            <div class="pc-desc">Fully operational, triggered after every presidential disaster declaration. Funding equals <strong>15–20% of estimated federal disaster assistance per declaration.</strong> Example: Lowndes County, Georgia — $1.47M in HMGP funding for backup generators at Pruitt Health nursing facilities with a private electrical contractor performing the work. <strong>Monitor disaster declarations in operating states; build relationships with county emergency management offices to get generator projects on priority lists.</strong></div>
+            <div class="pc-tags"><span class="tag">Always available</span><span class="tag">Monitor declarations</span><span class="tag">County EM partnerships</span></div>
+          </div>
+          <div class="pc-right">
+            <div class="amt c-green">15–20%</div>
+            <div class="amt-label">Of federal disaster aid</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="program-card bar-teal">
+        <div class="pc-inner">
+          <div class="pc-left">
+            <div class="pc-header">
+              <div class="pc-name">FEMA EMPG — Emergency Management Performance Grants</div>
+              <span class="status-pill s-active">Active</span>
+            </div>
+            <div class="pc-desc"><strong>$319.5M for FY2025.</strong> Explicitly lists "maintenance and sustainment" as allowable cost category. Emergency generators are on FEMA's Authorized Equipment List. Local emergency management agencies can use EMPG to fund <strong>maintenance of generators at emergency operations centers.</strong></div>
+            <div class="pc-tags"><span class="tag">Maintenance eligible</span><span class="tag">EOC generators</span><span class="tag">Local EM agencies</span></div>
+          </div>
+          <div class="pc-right">
+            <div class="amt c-teal">$319.5M</div>
+            <div class="amt-label">FY2025</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="facility" class="program-card bar-violet">
+        <div class="pc-inner">
+          <div class="pc-left">
+            <div class="pc-header">
+              <div class="pc-name">VA Medical Center Contracts</div>
+              <span class="status-pill s-active">Active — Recurring</span>
+            </div>
+            <div class="pc-desc">VA operates <strong>171 medical centers + 1,113 outpatient sites</strong>, all requiring backup power maintenance per NFPA 99, NFPA 110, and Joint Commission standards. Contracts typically run as <strong>base + four option years.</strong> Active solicitations in 2025–2026 include: Batavia VAMC, Seattle/American Lake VA, VA San Diego, VA Southern Colorado (SDVOSB set-aside), Minneapolis VAHCS, Baltimore VAMC. NAICS 811310. <strong>Many set aside for Service-Disabled Veteran-Owned Small Businesses.</strong></div>
+            <div class="pc-tags"><span class="tag">SDVOSB advantage</span><span class="tag">171 medical centers</span><span class="tag">NFPA 99/110 mandate</span><span class="tag">5-year contracts</span></div>
+          </div>
+          <div class="pc-right">
+            <div class="amt c-violet">1,284</div>
+            <div class="amt-label">VA facilities nationwide</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="program-card bar-blue">
+        <div class="pc-inner">
+          <div class="pc-left">
+            <div class="pc-header">
+              <div class="pc-name">GSA Multiple Award Schedule</div>
+              <span class="status-pill s-active">Priority Action — Register Now</span>
+            </div>
+            <div class="pc-desc">Primary gateway to <strong>all federal facility maintenance contracts.</strong> Relevant SINs: 561210FAC (Facilities Maintenance), 541690E (Energy Services), 561210SB (Smart Building Systems). 1,300+ companies hold this contract; <strong>$1.4B in FY2024 sales.</strong> Register in SAM.gov immediately. Obtain SBA certifications: <strong>8(a)</strong> (sole-source up to $4.5M), <strong>HUBZone</strong> (10% price preference — Houston has eligible zones), <strong>SDVOSB</strong> (VA/DOD set-asides). "Rule of Two" automatically sets aside contracts $15K–$350K for small businesses.</div>
+            <div class="pc-tags"><span class="tag">SAM.gov registration</span><span class="tag">8(a) · HUBZone · SDVOSB</span><span class="tag">$1.4B FY2024 sales</span><span class="tag">Priority action</span></div>
+          </div>
+          <div class="pc-right">
+            <div class="amt c-blue">$1.4B</div>
+            <div class="amt-label">FY2024 schedule sales</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="program-card bar-green">
+        <div class="pc-inner">
+          <div class="pc-left">
+            <div class="pc-header">
+              <div class="pc-name">CMS Emergency Preparedness Rule — Permanent Mandate</div>
+              <span class="status-pill s-active">Permanent — No Grant Dependency</span>
+            </div>
+            <div class="pc-desc">17+ provider/supplier types — hospitals, nursing homes, psychiatric hospitals, ESRD facilities, ASCs — must maintain emergency power systems as condition of Medicare/Medicaid participation. NFPA 99 and NFPA 110 require <strong>monthly testing, fuel management, and preventive maintenance.</strong> Joint Commission mandates 30-minute tests monthly and 4-hour continuous tests every 36 months. <strong>This is an unfunded mandate — neither generators nor maintenance are reimbursable by CMS.</strong> Creates permanent, mandatory market independent of any grant program.</div>
+            <div class="pc-tags"><span class="tag">Unfunded mandate</span><span class="tag">Monthly testing required</span><span class="tag">Permanent revenue</span><span class="tag">No grant dependency</span></div>
+          </div>
+          <div class="pc-right">
+            <div class="amt c-green">Permanent</div>
+            <div class="amt-label">Mandatory market</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="program-card bar-teal">
+        <div class="pc-inner">
+          <div class="pc-left">
+            <div class="pc-header">
+              <div class="pc-name">USDA REAP</div>
+              <span class="status-pill s-rolling">Loans Rolling · Grants Seasonal</span>
+            </div>
+            <div class="pc-desc">Grants up to <strong>50% of project costs (max $1M)</strong> and guaranteed loans up to 75% of costs (max $25M) for rural small businesses. Apollo's rural terminal clients in Arkansas, Oklahoma, and Tennessee can use REAP to fund generator upgrades and backup power. Grant applications paused June 2025 due to backlog; <strong>loan applications continue year-round.</strong></div>
+            <div class="pc-tags"><span class="tag">Rural clients</span><span class="tag">AR / OK / TN</span><span class="tag">50% grant + 75% loan</span></div>
+          </div>
+          <div class="pc-right">
+            <div class="amt c-teal">$25M</div>
+            <div class="amt-label">Max loan</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPANSION STATES -->
+  <section id="states" class="section">
+    <div class="section-head">
+      <span class="section-flag f-blue">Expansion</span>
+      <div class="section-title-text">Expansion Target States — Ranked by Opportunity Density</div>
+      <div class="section-hr"></div>
+    </div>
+
+    <div class="state-grid">
+
+      <!-- VIRGINIA -->
+      <div class="state-card">
+        <div class="state-header">
+          <div class="state-abbr c-teal">VA</div>
+          <div class="state-info">
+            <div class="state-name">Virginia</div>
+            <div class="state-sub">Data centers (35% global hyperscale), military UESCs, richest state programs</div>
+          </div>
+          <div class="state-priority pri-1">Priority 1</div>
+        </div>
+        <div class="state-body">
+          <div class="state-program">
+            <div class="sp-name">Virginia Clean Energy Innovation Bank (VCEIB)</div>
+            <div class="sp-desc">Loans and credit enhancements for clean energy infrastructure. For-profit eligible. Rolling applications.</div>
+            <div class="sp-amount c-teal">$10M seeded · Rolling</div>
+          </div>
+          <div class="state-program">
+            <div class="sp-name">Virginia Grid Reliability Improvement Program (VGRIP)</div>
+            <div class="sp-desc">Directly aligned with generator maintenance and backup power systems. Generator O&amp;M qualifies.</div>
+            <div class="sp-amount c-teal">State funded</div>
+          </div>
+          <div class="state-program">
+            <div class="sp-name">CORE Program + Dominion SCIP</div>
+            <div class="sp-desc">CORE funds local gov/nonprofit resilience (Apollo subcontracts). Dominion SCIP: up to $36,000+ rebate per qualifying EVSE station.</div>
+            <div class="sp-amount c-teal">SCIP: $51.1M total · Up to $36K/station</div>
+          </div>
+          <div class="state-program">
+            <div class="sp-name">Military UESC Subcontracting</div>
+            <div class="sp-desc">Dominion holds multi-decade contracts at Fort Belvoir, Pentagon, Quantico, Dahlgren. Quantico alone: 22-year $47.9M, 3.2 MW dual-fuel microgrid. Apollo subcontracts generator/maintenance work.</div>
+            <div class="sp-amount c-violet">Multi-decade contracts</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WASHINGTON -->
+      <div class="state-card">
+        <div class="state-header">
+          <div class="state-abbr c-green">WA</div>
+          <div class="state-info">
+            <div class="state-name">Washington State</div>
+            <div class="state-sub">Climate Commitment Act — $1.5B+ invested, richest state funding ecosystem</div>
+          </div>
+          <div class="state-priority pri-2">Priority 2</div>
+        </div>
+        <div class="state-body">
+          <div class="state-program">
+            <div class="sp-name">Clean Energy Grants Program</div>
+            <div class="sp-desc">$50,000–$2,500,000 per award for microgrids and battery backup. For-profit eligible. Direct application.</div>
+            <div class="sp-amount c-green">$32M available</div>
+          </div>
+          <div class="state-program">
+            <div class="sp-name">Washington EV Charging Program (WAEVCP)</div>
+            <div class="sp-desc">Grants up to 100% of eligible costs. Round 1: $98.4M awarded for 5,000+ ports. Round 2 underway.</div>
+            <div class="sp-amount c-green">~$100M from CCA</div>
+          </div>
+          <div class="state-program">
+            <div class="sp-name">Clean Buildings Performance Grants + Grid Resilience</div>
+            <div class="sp-desc">$150M for building retrofits (creates power management demand). $17.5M grid resilience flowing through utilities.</div>
+            <div class="sp-amount c-green">$167.5M combined</div>
+          </div>
+          <div class="state-program">
+            <div class="sp-name">EVC-RAA Repair Program</div>
+            <div class="sp-desc">$9.5M specifically for repair/replacement of broken existing chargers. Open to private entities. Apply through state DOT.</div>
+            <div class="sp-amount c-teal">$9.5M · Private eligible</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEW MEXICO -->
+      <div class="state-card">
+        <div class="state-header">
+          <div class="state-abbr c-blue">NM</div>
+          <div class="state-info">
+            <div class="state-name">New Mexico</div>
+            <div class="state-sub">$70M grid modernization fund — most accessible direct partnership for small contractors</div>
+          </div>
+          <div class="state-priority pri-3">Priority 3</div>
+        </div>
+        <div class="state-body">
+          <div class="state-program">
+            <div class="sp-name">Grid Modernization Grant Program</div>
+            <div class="sp-desc">Rolling applications since Nov 1, 2025 until funds exhausted. Type 3 (construction/installation) = 90% of funds. Partners as subcontractor to municipalities, counties, tribes, public schools.</div>
+            <div class="sp-amount c-blue">$70M · Rolling now</div>
+          </div>
+          <div class="state-program">
+            <div class="sp-name">Clean Transportation Fuel Standard</div>
+            <div class="sp-desc">Takes effect July 1, 2026. CNG/LNG infrastructure owners and EV charging operators earn tradeable credits — similar to Oregon's CFP.</div>
+            <div class="sp-amount c-blue">Credit market · Jul 2026</div>
+          </div>
+          <div class="state-program">
+            <div class="sp-name">Clean Car Charging Unit Tax Credit</div>
+            <div class="sp-desc">Up to $25,000 for DC fast chargers — one of the most generous state DCFC credits nationally. Available through Dec 31, 2027.</div>
+            <div class="sp-amount c-blue">$25,000/DCFC · Dec 2027</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARIZONA -->
+      <div class="state-card">
+        <div class="state-header">
+          <div class="state-abbr c-amber">AZ</div>
+          <div class="state-info">
+            <div class="state-name">Arizona</div>
+            <div class="state-sub">Utility-driven programs, data center tax incentives driving backup power demand</div>
+          </div>
+          <div class="state-priority pri-4">Priority 4</div>
+        </div>
+        <div class="state-body">
+          <div class="state-program">
+            <div class="sp-name">APS Take Charge AZ + SRP + TEP Programs</div>
+            <div class="sp-desc">APS: free stations + installation + maintenance. SRP: up to $25,000/DCFC. TEP: up to $20,500/DCFC + $5,400/L2 for multifamily/nonprofits.</div>
+            <div class="sp-amount c-amber">SRP: $25K/DCFC · TEP: $20.5K/DCFC</div>
+          </div>
+          <div class="state-program">
+            <div class="sp-name">ADOT NEVI Program</div>
+            <div class="sp-desc">$76.5M for up to 69 stations. Conditional awards May 2026. ADOT can withhold O&amp;M funds for uptime non-compliance — strong demand for reliable maintenance.</div>
+            <div class="sp-amount c-amber">$76.5M · May 2026 awards</div>
+          </div>
+          <div class="state-program">
+            <div class="sp-name">Data Center Program (Generator Tax Exemption)</div>
+            <div class="sp-desc">Qualifying data center equipment including generators and backup power systems exempt from sales/use tax up to 20 years. Phoenix-area boom driving service demand.</div>
+            <div class="sp-amount c-amber">20-yr tax exemption</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OREGON -->
+      <div class="state-card">
+        <div class="state-header">
+          <div class="state-abbr c-green">OR</div>
+          <div class="state-info">
+            <div class="state-name">Oregon</div>
+            <div class="state-sub">Energy Trust Trade Ally network is the single most important Oregon entry point</div>
+          </div>
+          <div class="state-priority pri-3">Priority 3</div>
+        </div>
+        <div class="state-body">
+          <div class="state-program">
+            <div class="sp-name">Energy Trust of Oregon — Trade Ally</div>
+            <div class="sp-desc">Becoming a Trade Ally provides referrals, co-marketing, and incentive processing. <strong>Most important first step for Oregon operations.</strong></div>
+            <div class="sp-amount c-green">energytrust.org · Apply now</div>
+          </div>
+          <div class="state-program">
+            <div class="sp-name">Oregon Clean Fuels Program (CFP)</div>
+            <div class="sp-desc">CNG/LNG suppliers and EV charging operators earn tradeable credits — ongoing recurring revenue. Major long-term play for Apollo's fueling infrastructure.</div>
+            <div class="sp-amount c-green">Credit revenue · Ongoing</div>
+          </div>
+          <div class="state-program">
+            <div class="sp-name">ODOT Community Charging Rebates</div>
+            <div class="sp-desc">Up to $8,000/L2 port (80% of costs). <strong>Maintenance contracts up to 5 years paid in advance are explicitly eligible costs.</strong> Next round 2026 with $10M.</div>
+            <div class="sp-amount c-green">$8K/port · 5-yr maintenance eligible</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEVADA -->
+      <div class="state-card">
+        <div class="state-header">
+          <div class="state-abbr c-violet">NV</div>
+          <div class="state-info">
+            <div class="state-name">Nevada</div>
+            <div class="state-sub">NV Energy $100M electrification plan; only ~$12.4M spent — large deployment ahead</div>
+          </div>
+          <div class="state-priority pri-4">Priority 4</div>
+        </div>
+        <div class="state-body">
+          <div class="state-program">
+            <div class="sp-name">NV Energy Transportation Electrification Plan</div>
+            <div class="sp-desc">Up to $100M. Third-party providers must demonstrate 97% uptime and use EVITP-certified electricians. Only 16 stations built as of end-2025 — massive deployment ahead.</div>
+            <div class="sp-amount c-violet">$100M · 97% uptime required</div>
+          </div>
+          <div class="state-program">
+            <div class="sp-name">NV Energy Commercial Rebates</div>
+            <div class="sp-desc">75% of L2 project costs (cap $30,000). $400/kWh for DCFC (cap $40,000). Data center tax abatements driving Las Vegas/Reno backup power demand.</div>
+            <div class="sp-amount c-violet">L2: $30K cap · DCFC: $40K cap</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXISTING STATES -->
+  <section id="existing" class="section">
+    <div class="section-head">
+      <span class="section-flag f-green">Existing Footprint</span>
+      <div class="section-title-text">Texas · Oklahoma · Louisiana · Arkansas · Tennessee</div>
+      <div class="section-hr"></div>
+    </div>
+
+    <div class="program-stack">
+
+      <div class="program-card bar-green">
+        <div class="pc-inner">
+          <div class="pc-left">
+            <div class="pc-header">
+              <div class="pc-name">Texas SECO — LoanSTAR + HOMES/HEAR Rebates</div>
+              <span class="status-pill s-active">Active</span>
+            </div>
+            <div class="pc-desc">LoanSTAR applications open through <strong>August 31, 2026.</strong> Energy Efficiency Revolving Loan Fund open through June 5, 2026. HOMES and HEAR Rebate Programs: <strong>$690M allocated to Texas</strong> — not yet launched. <strong>Register as SECO approved contractor before program launch</strong> to capture installation work when programs open. Texas Workforce Commission Skills for Small Business: up to $2,000/new employee and $1,000/existing employee for training — rolling applications.</div>
+            <div class="pc-tags"><span class="tag">$690M HOMES/HEAR pending</span><span class="tag">Register now</span><span class="tag">Training reimbursement</span></div>
+          </div>
+          <div class="pc-right">
+            <div class="amt c-green">$690M</div>
+            <div class="amt-label">HOMES/HEAR (TX)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="program-card bar-amber">
+        <div class="pc-inner">
+          <div class="pc-left">
+            <div class="pc-header">
+              <div class="pc-name">Oklahoma — 45% Alternative Fueling Infrastructure Credit</div>
+              <span class="status-pill s-active">Active through Dec 31 2028</span>
+            </div>
+            <div class="pc-desc"><strong>45% credit</strong> on CNG, LNG, hydrogen, propane, and electricity infrastructure — one of the most generous state-level credits nationally. Available through December 31, 2028. <strong>Market this aggressively to all Oklahoma clients.</strong> ChargeOK (VW-funded): up to 80% grants for public EV chargers. Oklahoma Grid Resilience Formula Grant ($24M+): applications expected early 2026.</div>
+            <div class="pc-tags"><span class="tag">45% credit</span><span class="tag">All alt fuels</span><span class="tag">Through Dec 2028</span><span class="tag">Market to clients</span></div>
+          </div>
+          <div class="pc-right">
+            <div class="amt c-amber">45%</div>
+            <div class="amt-label">State credit (OK)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="program-card bar-blue">
+        <div class="pc-inner">
+          <div class="pc-left">
+            <div class="pc-header">
+              <div class="pc-name">Louisiana LNG Terminal Boom</div>
+              <span class="status-pill s-active">Active — Largest Growth Market</span>
+            </div>
+            <div class="pc-desc">Louisiana has 4+ active LNG terminals with massive expansion underway: <strong>Woodside Louisiana LNG ($17.5B FID, 16.5 Mtpa)</strong>, Plaquemines Parish, Cameron LNG, Sabine Pass LNG. <strong>Largest commercial growth market for Apollo's LNG/CNG maintenance regardless of grant programs.</strong> Louisiana NEVI Program (~$73.4M): state specifically noted labor shortages of trained EVSE installers — direct opportunity. Quality Jobs Rebate: up to 6% payroll rebate for 10 years + sales tax rebate.</div>
+            <div class="pc-tags"><span class="tag">$17.5B Woodside project</span><span class="tag">EVSE installer shortage</span><span class="tag">6% payroll rebate</span><span class="tag">Largest growth market</span></div>
+          </div>
+          <div class="pc-right">
+            <div class="amt c-blue">$17.5B</div>
+            <div class="amt-label">Woodside LNG FID</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="program-card bar-teal">
+        <div class="pc-inner">
+          <div class="pc-left">
+            <div class="pc-header">
+              <div class="pc-name">Tennessee + Arkansas — Grid Grants, NEVI, TVA Programs</div>
+              <span class="status-pill s-active">Active</span>
+            </div>
+            <div class="pc-desc">Tennessee: Fast Charge TN Network ($5.2M, 5-year maintenance requirements for grant recipients), Grid Resilience Formula Grant ($23M), TVA EnergyRight Programs with EV charger credits across virtually all of TN. Arkansas: NEVI ($54.1M), ADEQ L2 EVSE Rebate Program, EECBG Competitive Grants ($9,000–$200,000) for local governments — energy efficiency and EV charging.</div>
+            <div class="pc-tags"><span class="tag">5-yr maintenance required (TN)</span><span class="tag">TVA EnergyRight</span><span class="tag">AR EECBG grants</span></div>
+          </div>
+          <div class="pc-right">
+            <div class="amt c-teal">$28.2M</div>
+            <div class="amt-label">TN programs</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- O&M FUNDING TABLE -->
+  <section id="om-table" class="section">
+    <div class="section-head">
+      <span class="section-flag f-teal">O&amp;M Analysis</span>
+      <div class="section-title-text">How Maintenance Costs Flow Through Grant Programs</div>
+      <div class="section-hr"></div>
+    </div>
+
+    <div class="table-wrap">
+      <table class="om-table">
+        <thead>
+          <tr><th>Program</th><th>Covers Installation</th><th>Covers Ongoing O&amp;M</th><th>Duration</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>NEVI</td><td class="yes-cell">YES</td><td class="yes-cell">YES</td><td>5 years post-commissioning</td></tr>
+          <tr><td>Texas TBPP</td><td class="yes-cell">YES</td><td class="yes-cell">YES (loans cover maintenance)</td><td>Program duration</td></tr>
+          <tr><td>FEMA BRIC</td><td class="yes-cell">YES</td><td class="ltd-cell">LIMITED</td><td>Period of performance only</td></tr>
+          <tr><td>FEMA HMGP</td><td class="yes-cell">YES</td><td class="ltd-cell">LIMITED</td><td>36-month max</td></tr>
+          <tr><td>FEMA EMPG</td><td class="ltd-cell">LIMITED</td><td class="yes-cell">YES (maintenance/sustainment)</td><td>Annual</td></tr>
+          <tr><td>DOE ESPCs</td><td class="yes-cell">YES</td><td class="yes-cell">YES</td><td>Up to 25 years</td></tr>
+          <tr><td>VA Contracts</td><td class="yes-cell">YES</td><td class="yes-cell">YES (recurring contracts)</td><td>Base + 4 option years typical</td></tr>
+          <tr><td>CMS Rule</td><td class="no-cell">NO (unfunded mandate)</td><td class="no-cell">NO (unfunded mandate)</td><td>Permanent requirement</td></tr>
+          <tr><td>Oregon CCR</td><td class="yes-cell">YES</td><td class="yes-cell">YES (5-year prepaid)</td><td>5 years</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section id="roadmap" class="section">
+    <div class="section-head">
+      <span class="section-flag f-red">Strategic Roadmap</span>
+      <div class="section-title-text">Prioritized Action Plan</div>
+      <div class="section-hr"></div>
+    </div>
+  </section>
+
+  <div class="roadmap">
+    <div class="roadmap-header">
+      <div class="roadmap-title">The most valuable programs reward speed, certification, and positioning.</div>
+      <div class="roadmap-sub">Four phases prioritized by urgency. Apollo's best path combines federal facility contracting, state pass-through programs, NEVI maintenance subcontracting, and Texas TBPP vendor positioning.</div>
+    </div>
+
+    <div class="roadmap-phases">
+      <div class="phase ph-1">
+        <div class="phase-label">Phase 1 — Immediate</div>
+        <div class="phase-period">Before June 30, 2026</div>
+        <div class="phase-actions">
+          <div class="action-item"><div class="action-dot"></div><div><strong>Section 30C:</strong> Complete all possible EV charging and CNG/LNG installations. 90 days remaining.</div></div>
+          <div class="action-item"><div class="action-dot"></div><div><strong>SPARK/GRIP:</strong> Submit concept paper partnerships with utility or government partners. Due April 2.</div></div>
+          <div class="action-item"><div class="action-dot"></div><div><strong>Texas TERP:</strong> Apply for programs opening April 2026 — be ready day one.</div></div>
+          <div class="action-item"><div class="action-dot"></div><div><strong>TWC Skills:</strong> Apply for training reimbursement ($2K/new employee) for all employees now.</div></div>
+        </div>
+      </div>
+
+      <div class="phase ph-2">
+        <div class="phase-label">Phase 2 — Near-Term</div>
+        <div class="phase-period">Q2–Q3 2026</div>
+        <div class="phase-actions">
+          <div class="action-item"><div class="action-dot"></div><div><strong>SAM.gov + GSA Schedule:</strong> Register and pursue Multiple Award Schedule contract. Gateway to all federal work.</div></div>
+          <div class="action-item"><div class="action-dot"></div><div><strong>EVITP certification:</strong> All technicians certified — required for NEVI, NV Energy, and most utility programs.</div></div>
+          <div class="action-item"><div class="action-dot"></div><div><strong>SBA certifications:</strong> Evaluate 8(a), HUBZone (Houston eligible zones), and SDVOSB eligibility.</div></div>
+          <div class="action-item"><div class="action-dot"></div><div><strong>SECO registration:</strong> Register as approved contractor before HOMES/HEAR launch.</div></div>
+          <div class="action-item"><div class="action-dot"></div><div><strong>Energy Trust Trade Ally:</strong> Apply for Oregon Trade Ally status.</div></div>
+          <div class="action-item"><div class="action-dot"></div><div><strong>AZ NEVI + NM Grid Mod:</strong> Monitor Arizona Phase 2 awards (May 2026); apply for NM rolling grants.</div></div>
+        </div>
+      </div>
+
+      <div class="phase ph-3">
+        <div class="phase-label">Phase 3 — Medium-Term</div>
+        <div class="phase-period">Q3 2026 — Q1 2027</div>
+        <div class="phase-actions">
+          <div class="action-item"><div class="action-dot"></div><div><strong>Texas TBPP vendor list:</strong> Position for approved vendor applications when open. Single largest opportunity.</div></div>
+          <div class="action-item"><div class="action-dot"></div><div><strong>VA contracts:</strong> Pursue generator maintenance contracts through SAM.gov. SDVOSB set-asides.</div></div>
+          <div class="action-item"><div class="action-dot"></div><div><strong>Virginia expansion:</strong> Target data center operators for backup power maintenance. VCEIB, VGRIP, CORE applications.</div></div>
+          <div class="action-item"><div class="action-dot"></div><div><strong>NEVI subcontracting:</strong> Partner with Tesla, EVgo, Electrify America, ChargePoint, Electric Era as regional maintenance sub across all states.</div></div>
+          <div class="action-item"><div class="action-dot"></div><div><strong>Registered apprenticeship:</strong> Establish DOE program to meet PWA requirements and command premium contract rates.</div></div>
+        </div>
+      </div>
+
+      <div class="phase ph-4">
+        <div class="phase-label">Phase 4 — Ongoing</div>
+        <div class="phase-period">Continuous</div>
+        <div class="phase-actions">
+          <div class="action-item"><div class="action-dot"></div><div><strong>FEMA BRIC:</strong> Monitor restoration; partner with local governments for generator project applications.</div></div>
+          <div class="action-item"><div class="action-dot"></div><div><strong>HMGP monitoring:</strong> Track disaster declarations; build county EM relationships in all operating states.</div></div>
+          <div class="action-item"><div class="action-dot"></div><div><strong>Oregon + NM clean fuel credits:</strong> Generate ongoing revenue from Oregon CFP credits; track NM program launching July 2026.</div></div>
+          <div class="action-item"><div class="action-dot"></div><div><strong>Washington FundHubWA:</strong> Monitor fundhub.wa.gov for CCA-funded opportunities continuously.</div></div>
+          <div class="action-item"><div class="action-dot"></div><div><strong>HCC partnerships:</strong> Build relationships with Health Care Coalitions for hospital backup power work.</div></div>
+          <div class="action-item"><div class="action-dot"></div><div><strong>Louisiana LNG maintenance:</strong> Aggressively pursue maintenance contracts at Woodside, Plaquemines, Cameron, Sabine Pass.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-l">Apollo Energy Group · National Grant Intelligence · 2026-03-25</div>
+    <div class="footer-r">Prepared internally — not legal or financial advice. Verify all program status before application.</div>
+  </footer>
+
+</div>
+
+<script>
+// Active nav highlighting on scroll
+const sections = document.querySelectorAll('section[id], div[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const match = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+      if (match) match.classList.add('active');
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
