@@ -132,6 +132,92 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:14
 .footer-brand{font-family:var(--display);font-size:12px;color:var(--muted);}
 .footer-id{font-family:var(--mono);font-size:10px;color:var(--muted);text-align:right;}
 @media print{.topbar{display:none;}.site-nav{display:none;}.page{display:block!important;}.unit-panel{display:block!important;}.wrapper{padding:16px;max-width:100%;}.stat-strip{break-inside:avoid;}.card{break-inside:avoid;}}
+
+/* ── Daily Log Accordion ── */
+.dl-acc-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 14px; cursor:pointer; background:#0e1520;
+  border:1px solid #1e2d40; border-radius:6px; margin-bottom:2px;
+  transition:background .15s;
+}
+.dl-acc-header:hover { background:#121c2a; }
+.dl-accordion-item.open .dl-acc-header { border-color:#2a3f5a; background:#121c2a; }
+.dl-acc-arrow { font-size:11px; color:#7a8fa8; transition:transform .15s; }
+.dl-acc-body {
+  background:#0a1019; border:1px solid #1e2d40; border-top:none;
+  border-radius:0 0 6px 6px; margin-bottom:6px; overflow-x:auto;
+}
+.dl-accordion-item { margin-bottom:4px; }
+
+/* ── PRINT STYLES ── */
+@media print {
+  /* Force white background, dark text */
+  *, *::before, *::after { color-adjust:exact!important; -webkit-print-color-adjust:exact!important; }
+  body { background:#fff!important; color:#111!important; font-size:11px!important; }
+
+  /* Hide interactive chrome */
+  .topbar, .site-nav, .btn-print, .btn-attn,
+  .unit-panel-tabs, button, .dl-acc-arrow,
+  [onclick]:not(.dl-acc-header) { display:none!important; }
+
+  /* Show all pages, not just active */
+  .page { display:block!important; }
+  .wrapper { padding:0!important; max-width:100%!important; }
+
+  /* ── Page break strategy ── */
+  /* Cover / hero section — page 1 */
+  .hero { page-break-after:avoid; }
+  .stat-strip { page-break-after:always; }
+
+  /* Each unit panel = its own page */
+  .unit-panel { page-break-before:always; page-break-inside:avoid; }
+
+  /* Show all unit panel subs (not just active tab) */
+  .unit-panel-sub { display:block!important; }
+
+  /* Inspection items & readings tables: no orphan rows */
+  .readings-table, .history-table { page-break-inside:avoid; }
+  .readings-table tr, .history-table tr { page-break-inside:avoid; }
+  .insp-item { page-break-inside:avoid; }
+  .insp-group-label { page-break-after:avoid; }
+
+  /* Daily Log accordion: expand all, clean display */
+  .dl-acc-body { display:block!important; border:none!important; background:none!important; }
+  .dl-accordion-item { page-break-inside:avoid; margin-bottom:0!important; }
+  .dl-acc-header {
+    background:#f0f4f8!important; border:1px solid #ccc!important;
+    border-radius:4px 4px 0 0!important; margin-bottom:0!important;
+    page-break-after:avoid;
+  }
+  #dl-accordion { border:1px solid #ccc; border-radius:6px; overflow:hidden; }
+  .dl-acc-body table { border-collapse:collapse!important; }
+  .dl-acc-body td, .dl-acc-body th {
+    border-bottom:1px solid #ddd!important; color:#111!important;
+    background:#fff!important;
+  }
+  .dl-acc-body tr:nth-child(even) td { background:#f8f9fa!important; }
+
+  /* Stat strip: light print version */
+  .stat-cell { background:#f8f9fa!important; border:1px solid #ddd!important; }
+  .stat-value, .val-teal, .val-green, .val-amber, .val-white { color:#111!important; }
+  .stat-label { color:#666!important; }
+
+  /* Unit panel: light version */
+  .unit-card { background:#fff!important; border:1px solid #ccc!important; }
+  .unit-card-header { background:#f0f4f8!important; }
+
+  /* Tables */
+  .readings-table thead tr { background:#f0f4f8!important; }
+  .readings-table th, .history-table th { color:#333!important; }
+  .readings-table td, .history-table td { color:#111!important; }
+  .badge { border:1px solid #ccc!important; color:#333!important; background:#f0f4f8!important; }
+  .badge-pass { background:#e8f5ee!important; color:#1a7a3c!important; border-color:#1a7a3c!important; }
+  .badge-attn { background:#fff8e8!important; color:#a06000!important; border-color:#a06000!important; }
+
+  /* Report footer */
+  .report-footer { page-break-before:always; }
+}
+
 </style>
 </head>
 <body>
@@ -298,33 +384,26 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:14
         </div>
         
         <div class="unit-panel-sub" id="mc-tank-dailylog">
-          <div style="margin-bottom:10px;">
-            <span style="font-size:11px;color:#7a8fa8;">FY2026 · Mar 12 – Mar 27 · Law-of-averages corrections applied (🟡 = corrected cell)</span>
-          </div>
-          <!-- Day tabs -->
-          <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px;border-bottom:1px solid #1e2d40;padding-bottom:8px;">
-            <div class="unit-panel-tab dl-tab active" onclick="switchDailyTab('3_12', this)">3/12</div>
-<div class="unit-panel-tab dl-tab " onclick="switchDailyTab('3_13', this)">3/13</div>
-<div class="unit-panel-tab dl-tab " onclick="switchDailyTab('3_14', this)">3/14</div>
-<div class="unit-panel-tab dl-tab " onclick="switchDailyTab('3_15', this)">3/15</div>
-<div class="unit-panel-tab dl-tab " onclick="switchDailyTab('3_16', this)">3/16</div>
-<div class="unit-panel-tab dl-tab " onclick="switchDailyTab('3_17', this)">3/17</div>
-<div class="unit-panel-tab dl-tab " onclick="switchDailyTab('3_18', this)">3/18</div>
-<div class="unit-panel-tab dl-tab " onclick="switchDailyTab('3_19', this)">3/19</div>
-<div class="unit-panel-tab dl-tab " onclick="switchDailyTab('3_20', this)">3/20</div>
-<div class="unit-panel-tab dl-tab " onclick="switchDailyTab('3_21', this)">3/21</div>
-<div class="unit-panel-tab dl-tab " onclick="switchDailyTab('3_22', this)">3/22</div>
-<div class="unit-panel-tab dl-tab " onclick="switchDailyTab('3_23', this)">3/23</div>
-<div class="unit-panel-tab dl-tab " onclick="switchDailyTab('3_24', this)">3/24</div>
-<div class="unit-panel-tab dl-tab " onclick="switchDailyTab('3_25', this)">3/25</div>
-<div class="unit-panel-tab dl-tab " onclick="switchDailyTab('3_26', this)">3/26</div>
-<div class="unit-panel-tab dl-tab " onclick="switchDailyTab('3_27', this)">3/27</div>
+  <div style="margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+    <span style="font-size:11px;color:#7a8fa8;">FY2026 · Mar 12–27 · Law-of-averages corrections applied</span>
+    <div style="display:flex;gap:6px;">
+      <button onclick="expandAllAcc()" style="font-size:10px;background:#1e2d40;color:#7a8fa8;border:1px solid #2a3f5a;padding:4px 10px;border-radius:4px;cursor:pointer;font-family:var(--mono);">Expand All</button>
+      <button onclick="collapseAllAcc()" style="font-size:10px;background:#1e2d40;color:#7a8fa8;border:1px solid #2a3f5a;padding:4px 10px;border-radius:4px;cursor:pointer;font-family:var(--mono);">Collapse All</button>
+    </div>
+  </div>
+  <div id="dl-accordion">
 
-          </div>
-          <!-- Day panels -->
-          
-    <div id="dl-panel-3_12" style="display:block;">
-      <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
+<div class="dl-accordion-item open" id="acc-3_12">
+  <div class="dl-acc-header" onclick="toggleAcc('3_12')">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <span style="font-family:var(--mono);font-size:11px;font-weight:600;color:#00c8d0;min-width:52px;">Mar 12</span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">AM 764</span></span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"></span>
+    </div>
+    <span class="dl-acc-arrow" id="arr-3_12">▲</span>
+  </div>
+  <div class="dl-acc-body" id="body-3_12" style="display:block;">
+    <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
         <thead>
           <tr style="border-bottom:1px solid #2a3f5f;">
             <th style="padding:6px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#7a8fa8;text-align:left;">Shift</th>
@@ -348,9 +427,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:14
         </tr>
         </tbody>
       </table>
+  </div>
+</div>
+
+<div class="dl-accordion-item " id="acc-3_13">
+  <div class="dl-acc-header" onclick="toggleAcc('3_13')">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <span style="font-family:var(--mono);font-size:11px;font-weight:600;color:#00c8d0;min-width:52px;">Mar 13</span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">AM 946</span><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">PM 1,018</span></span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"></span>
     </div>
-    <div id="dl-panel-3_13" style="display:none;">
-      <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
+    <span class="dl-acc-arrow" id="arr-3_13">▼</span>
+  </div>
+  <div class="dl-acc-body" id="body-3_13" style="display:none;">
+    <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
         <thead>
           <tr style="border-bottom:1px solid #2a3f5f;">
             <th style="padding:6px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#7a8fa8;text-align:left;">Shift</th>
@@ -383,9 +473,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:14
         </tr>
         </tbody>
       </table>
+  </div>
+</div>
+
+<div class="dl-accordion-item " id="acc-3_14">
+  <div class="dl-acc-header" onclick="toggleAcc('3_14')">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <span style="font-family:var(--mono);font-size:11px;font-weight:600;color:#00c8d0;min-width:52px;">Mar 14</span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">AM 1,194</span><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">PM 1,289</span></span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:9px;background:#222;color:#888;padding:2px 6px;border-radius:3px;border:1px solid #333;">EST</span></span>
     </div>
-    <div id="dl-panel-3_14" style="display:none;">
-      <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
+    <span class="dl-acc-arrow" id="arr-3_14">▼</span>
+  </div>
+  <div class="dl-acc-body" id="body-3_14" style="display:none;">
+    <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
         <thead>
           <tr style="border-bottom:1px solid #2a3f5f;">
             <th style="padding:6px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#7a8fa8;text-align:left;">Shift</th>
@@ -418,9 +519,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:14
         </tr>
         </tbody>
       </table>
+  </div>
+</div>
+
+<div class="dl-accordion-item " id="acc-3_15">
+  <div class="dl-acc-header" onclick="toggleAcc('3_15')">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <span style="font-family:var(--mono);font-size:11px;font-weight:600;color:#00c8d0;min-width:52px;">Mar 15</span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">AM 1,479</span><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">PM 1,560</span></span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"></span>
     </div>
-    <div id="dl-panel-3_15" style="display:none;">
-      <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
+    <span class="dl-acc-arrow" id="arr-3_15">▼</span>
+  </div>
+  <div class="dl-acc-body" id="body-3_15" style="display:none;">
+    <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
         <thead>
           <tr style="border-bottom:1px solid #2a3f5f;">
             <th style="padding:6px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#7a8fa8;text-align:left;">Shift</th>
@@ -453,9 +565,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:14
         </tr>
         </tbody>
       </table>
+  </div>
+</div>
+
+<div class="dl-accordion-item " id="acc-3_16">
+  <div class="dl-acc-header" onclick="toggleAcc('3_16')">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <span style="font-family:var(--mono);font-size:11px;font-weight:600;color:#00c8d0;min-width:52px;">Mar 16</span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">AM 1,757</span><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">PM 1,835</span></span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:9px;background:rgba(245,166,35,.2);color:#f5a623;padding:2px 6px;border-radius:3px;border:1px solid rgba(245,166,35,.4);">REFUEL</span></span>
     </div>
-    <div id="dl-panel-3_16" style="display:none;">
-      <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
+    <span class="dl-acc-arrow" id="arr-3_16">▼</span>
+  </div>
+  <div class="dl-acc-body" id="body-3_16" style="display:none;">
+    <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
         <thead>
           <tr style="border-bottom:1px solid #2a3f5f;">
             <th style="padding:6px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#7a8fa8;text-align:left;">Shift</th>
@@ -488,9 +611,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:14
         </tr>
         </tbody>
       </table>
+  </div>
+</div>
+
+<div class="dl-accordion-item " id="acc-3_17">
+  <div class="dl-acc-header" onclick="toggleAcc('3_17')">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <span style="font-family:var(--mono);font-size:11px;font-weight:600;color:#00c8d0;min-width:52px;">Mar 17</span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">AM 2,007</span><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">PM 2,100</span></span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:9px;background:rgba(255,215,0,.15);color:#FFD700;padding:2px 6px;border-radius:3px;border:1px solid rgba(255,215,0,.3);">CORRECTED</span></span>
     </div>
-    <div id="dl-panel-3_17" style="display:none;">
-      <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
+    <span class="dl-acc-arrow" id="arr-3_17">▼</span>
+  </div>
+  <div class="dl-acc-body" id="body-3_17" style="display:none;">
+    <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
         <thead>
           <tr style="border-bottom:1px solid #2a3f5f;">
             <th style="padding:6px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#7a8fa8;text-align:left;">Shift</th>
@@ -523,9 +657,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:14
         </tr>
         </tbody>
       </table>
+  </div>
+</div>
+
+<div class="dl-accordion-item " id="acc-3_18">
+  <div class="dl-acc-header" onclick="toggleAcc('3_18')">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <span style="font-family:var(--mono);font-size:11px;font-weight:600;color:#00c8d0;min-width:52px;">Mar 18</span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">AM 2,279</span><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">PM 2,358</span></span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"></span>
     </div>
-    <div id="dl-panel-3_18" style="display:none;">
-      <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
+    <span class="dl-acc-arrow" id="arr-3_18">▼</span>
+  </div>
+  <div class="dl-acc-body" id="body-3_18" style="display:none;">
+    <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
         <thead>
           <tr style="border-bottom:1px solid #2a3f5f;">
             <th style="padding:6px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#7a8fa8;text-align:left;">Shift</th>
@@ -558,9 +703,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:14
         </tr>
         </tbody>
       </table>
+  </div>
+</div>
+
+<div class="dl-accordion-item " id="acc-3_19">
+  <div class="dl-acc-header" onclick="toggleAcc('3_19')">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <span style="font-family:var(--mono);font-size:11px;font-weight:600;color:#00c8d0;min-width:52px;">Mar 19</span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">AM 2,552</span><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">PM 2,649</span></span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:9px;background:#222;color:#888;padding:2px 6px;border-radius:3px;border:1px solid #333;">EST</span></span>
     </div>
-    <div id="dl-panel-3_19" style="display:none;">
-      <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
+    <span class="dl-acc-arrow" id="arr-3_19">▼</span>
+  </div>
+  <div class="dl-acc-body" id="body-3_19" style="display:none;">
+    <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
         <thead>
           <tr style="border-bottom:1px solid #2a3f5f;">
             <th style="padding:6px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#7a8fa8;text-align:left;">Shift</th>
@@ -593,9 +749,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:14
         </tr>
         </tbody>
       </table>
+  </div>
+</div>
+
+<div class="dl-accordion-item " id="acc-3_20">
+  <div class="dl-acc-header" onclick="toggleAcc('3_20')">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <span style="font-family:var(--mono);font-size:11px;font-weight:600;color:#00c8d0;min-width:52px;">Mar 20</span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">AM 2,873</span><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">PM 2,912</span></span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:9px;background:rgba(255,215,0,.15);color:#FFD700;padding:2px 6px;border-radius:3px;border:1px solid rgba(255,215,0,.3);">CORRECTED</span><span style="font-size:9px;background:#222;color:#888;padding:2px 6px;border-radius:3px;border:1px solid #333;">EST</span></span>
     </div>
-    <div id="dl-panel-3_20" style="display:none;">
-      <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
+    <span class="dl-acc-arrow" id="arr-3_20">▼</span>
+  </div>
+  <div class="dl-acc-body" id="body-3_20" style="display:none;">
+    <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
         <thead>
           <tr style="border-bottom:1px solid #2a3f5f;">
             <th style="padding:6px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#7a8fa8;text-align:left;">Shift</th>
@@ -628,9 +795,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:14
         </tr>
         </tbody>
       </table>
+  </div>
+</div>
+
+<div class="dl-accordion-item " id="acc-3_21">
+  <div class="dl-acc-header" onclick="toggleAcc('3_21')">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <span style="font-family:var(--mono);font-size:11px;font-weight:600;color:#00c8d0;min-width:52px;">Mar 21</span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">AM 3,117</span><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">PM 3,227</span></span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:9px;background:#222;color:#888;padding:2px 6px;border-radius:3px;border:1px solid #333;">EST</span></span>
     </div>
-    <div id="dl-panel-3_21" style="display:none;">
-      <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
+    <span class="dl-acc-arrow" id="arr-3_21">▼</span>
+  </div>
+  <div class="dl-acc-body" id="body-3_21" style="display:none;">
+    <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
         <thead>
           <tr style="border-bottom:1px solid #2a3f5f;">
             <th style="padding:6px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#7a8fa8;text-align:left;">Shift</th>
@@ -663,9 +841,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:14
         </tr>
         </tbody>
       </table>
+  </div>
+</div>
+
+<div class="dl-accordion-item " id="acc-3_22">
+  <div class="dl-acc-header" onclick="toggleAcc('3_22')">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <span style="font-family:var(--mono);font-size:11px;font-weight:600;color:#00c8d0;min-width:52px;">Mar 22</span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">AM 3,422</span><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">PM 3,519</span></span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:9px;background:rgba(232,69,69,.15);color:#e84545;padding:2px 6px;border-radius:3px;border:1px solid rgba(232,69,69,.3);">GAP</span></span>
     </div>
-    <div id="dl-panel-3_22" style="display:none;">
-      <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
+    <span class="dl-acc-arrow" id="arr-3_22">▼</span>
+  </div>
+  <div class="dl-acc-body" id="body-3_22" style="display:none;">
+    <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
         <thead>
           <tr style="border-bottom:1px solid #2a3f5f;">
             <th style="padding:6px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#7a8fa8;text-align:left;">Shift</th>
@@ -698,9 +887,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:14
         </tr>
         </tbody>
       </table>
+  </div>
+</div>
+
+<div class="dl-accordion-item " id="acc-3_23">
+  <div class="dl-acc-header" onclick="toggleAcc('3_23')">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <span style="font-family:var(--mono);font-size:11px;font-weight:600;color:#00c8d0;min-width:52px;">Mar 23</span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">AM 3,713</span><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">PM 3,810</span></span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:9px;background:rgba(232,69,69,.15);color:#e84545;padding:2px 6px;border-radius:3px;border:1px solid rgba(232,69,69,.3);">GAP</span></span>
     </div>
-    <div id="dl-panel-3_23" style="display:none;">
-      <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
+    <span class="dl-acc-arrow" id="arr-3_23">▼</span>
+  </div>
+  <div class="dl-acc-body" id="body-3_23" style="display:none;">
+    <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
         <thead>
           <tr style="border-bottom:1px solid #2a3f5f;">
             <th style="padding:6px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#7a8fa8;text-align:left;">Shift</th>
@@ -733,9 +933,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:14
         </tr>
         </tbody>
       </table>
+  </div>
+</div>
+
+<div class="dl-accordion-item " id="acc-3_24">
+  <div class="dl-acc-header" onclick="toggleAcc('3_24')">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <span style="font-family:var(--mono);font-size:11px;font-weight:600;color:#00c8d0;min-width:52px;">Mar 24</span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">AM 4,003</span><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">PM 4,100</span></span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:9px;background:rgba(232,69,69,.15);color:#e84545;padding:2px 6px;border-radius:3px;border:1px solid rgba(232,69,69,.3);">GAP</span></span>
     </div>
-    <div id="dl-panel-3_24" style="display:none;">
-      <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
+    <span class="dl-acc-arrow" id="arr-3_24">▼</span>
+  </div>
+  <div class="dl-acc-body" id="body-3_24" style="display:none;">
+    <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
         <thead>
           <tr style="border-bottom:1px solid #2a3f5f;">
             <th style="padding:6px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#7a8fa8;text-align:left;">Shift</th>
@@ -768,9 +979,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:14
         </tr>
         </tbody>
       </table>
+  </div>
+</div>
+
+<div class="dl-accordion-item " id="acc-3_25">
+  <div class="dl-acc-header" onclick="toggleAcc('3_25')">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <span style="font-family:var(--mono);font-size:11px;font-weight:600;color:#00c8d0;min-width:52px;">Mar 25</span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">AM 4,294</span><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">PM 4,402</span></span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"></span>
     </div>
-    <div id="dl-panel-3_25" style="display:none;">
-      <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
+    <span class="dl-acc-arrow" id="arr-3_25">▼</span>
+  </div>
+  <div class="dl-acc-body" id="body-3_25" style="display:none;">
+    <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
         <thead>
           <tr style="border-bottom:1px solid #2a3f5f;">
             <th style="padding:6px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#7a8fa8;text-align:left;">Shift</th>
@@ -803,9 +1025,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:14
         </tr>
         </tbody>
       </table>
+  </div>
+</div>
+
+<div class="dl-accordion-item " id="acc-3_26">
+  <div class="dl-acc-header" onclick="toggleAcc('3_26')">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <span style="font-family:var(--mono);font-size:11px;font-weight:600;color:#00c8d0;min-width:52px;">Mar 26</span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">AM 4,581</span><span style="font-size:10px;color:#e2eaf5;background:#1e2d40;padding:2px 8px;border-radius:3px;margin-right:4px;">PM 4,695</span></span>
+      <span style="display:flex;gap:4px;flex-wrap:wrap;"></span>
     </div>
-    <div id="dl-panel-3_26" style="display:none;">
-      <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
+    <span class="dl-acc-arrow" id="arr-3_26">▼</span>
+  </div>
+  <div class="dl-acc-body" id="body-3_26" style="display:none;">
+    <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
         <thead>
           <tr style="border-bottom:1px solid #2a3f5f;">
             <th style="padding:6px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#7a8fa8;text-align:left;">Shift</th>
@@ -838,43 +1071,36 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:14
         </tr>
         </tbody>
       </table>
-    </div>
-    <div id="dl-panel-3_27" style="display:none;">
-      <table style="width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;">
-        <thead>
-          <tr style="border-bottom:1px solid #2a3f5f;">
-            <th style="padding:6px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#7a8fa8;text-align:left;">Shift</th>
-            <th style="padding:6px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#7a8fa8;text-align:left;">Tech</th>
-            <th style="padding:6px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#7a8fa8;text-align:left;">Flowmeter</th>
-            <th style="padding:6px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#7a8fa8;text-align:left;">Tank PSI</th>
-            <th style="padding:6px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#7a8fa8;text-align:left;">Line PSI</th>
-            <th style="padding:6px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#7a8fa8;text-align:right;">P-Diff</th>
-            <th style="padding:6px 8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#7a8fa8;text-align:left;">Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td style="padding:6px 8px;font-size:11px;color:#aaa;">AM</td>
-          <td style="padding:6px 8px;font-size:11px;">—</td>
-          <td style="padding:6px 8px;font-size:12px;font-weight:600;">4,860</td>
-          <td style="padding:6px 8px;font-size:12px;" >65</td>
-          <td style="padding:6px 8px;font-size:12px;" >65</td>
-          <td style="padding:6px 8px;font-size:11px;color:#aaa;text-align:right;">+0</td>
-          <td style="font-size:10px;color:#aaa;padding:6px 8px;">Seq #17 (corrected from 13)</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-          <!-- JS -->
-          <script>
-          function switchDailyTab(did, el) {
-            document.querySelectorAll('[id^="dl-panel-"]').forEach(p => p.style.display = 'none');
-            document.querySelectorAll('.dl-tab').forEach(t => t.classList.remove('active'));
-            document.getElementById('dl-panel-' + did).style.display = 'block';
-            el.classList.add('active');
-          }
-          </script>
-        </div>
+  </div>
+</div>
+  </div>
+  <script>
+  function toggleAcc(did) {
+    var body = document.getElementById('body-'+did);
+    var arr = document.getElementById('arr-'+did);
+    var item = document.getElementById('acc-'+did);
+    if (body.style.display === 'none') {
+      body.style.display = 'block';
+      arr.textContent = '▲';
+      item.classList.add('open');
+    } else {
+      body.style.display = 'none';
+      arr.textContent = '▼';
+      item.classList.remove('open');
+    }
+  }
+  function expandAllAcc() {
+    document.querySelectorAll('.dl-acc-body').forEach(function(b) { b.style.display='block'; });
+    document.querySelectorAll('.dl-acc-arrow').forEach(function(a) { a.textContent='▲'; });
+    document.querySelectorAll('.dl-accordion-item').forEach(function(i) { i.classList.add('open'); });
+  }
+  function collapseAllAcc() {
+    document.querySelectorAll('.dl-acc-body').forEach(function(b) { b.style.display='none'; });
+    document.querySelectorAll('.dl-acc-arrow').forEach(function(a) { a.textContent='▼'; });
+    document.querySelectorAll('.dl-accordion-item').forEach(function(i) { i.classList.remove('open'); });
+  }
+  </script>
+</div>
         <div class="unit-panel-sub" id="mc-tank-inspection">
           <div class="insp-group-label">Leak Survey</div>
           <div class="insp-item"><div><div class="insp-name">Tank Fittings &amp; Valves</div><div class="insp-detail">Liquid &amp; vapor connections</div></div><div class="insp-note">No leaks</div><span class="badge badge-pass">Pass</span></div>
