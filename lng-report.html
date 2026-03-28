@@ -131,7 +131,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:14
 .report-footer{margin-top:48px;border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;align-items:flex-end;}
 .footer-brand{font-family:var(--display);font-size:12px;color:var(--muted);}
 .footer-id{font-family:var(--mono);font-size:10px;color:var(--muted);text-align:right;}
-@media print{.topbar{display:none;}.site-nav{display:none;}.page{display:block!important;}.unit-panel{display:block!important;}.wrapper{padding:16px;max-width:100%;}.stat-strip{break-inside:avoid;}.card{break-inside:avoid;}}
+/* old print block removed */
 
 /* ── Daily Log Accordion ── */
 .dl-acc-header {
@@ -151,71 +151,174 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:14
 
 /* ── PRINT STYLES ── */
 @media print {
-  /* Force white background, dark text */
-  *, *::before, *::after { color-adjust:exact!important; -webkit-print-color-adjust:exact!important; }
-  body { background:#fff!important; color:#111!important; font-size:11px!important; }
+  /* Force color rendering */
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
 
-  /* Hide interactive chrome */
+  /* Reset to white/dark-text for readability */
+  body {
+    background: #fff !important;
+    color: #111 !important;
+    font-size: 11px !important;
+  }
+
+  /* Override all CSS custom properties for print */
+  :root {
+    --bg: #fff !important;
+    --surface: #f5f7fa !important;
+    --card: #f5f7fa !important;
+    --border: #d0d5dd !important;
+    --text: #111 !important;
+    --muted: #555 !important;
+    --label: #444 !important;
+  }
+
+  /* ── Hide interactive elements ── */
   .topbar, .site-nav, .btn-print, .btn-attn,
-  .unit-panel-tabs, button, .dl-acc-arrow,
-  [onclick]:not(.dl-acc-header) { display:none!important; }
+  .unit-panel-tabs, .dl-acc-arrow,
+  button { display: none !important; }
 
-  /* Show all pages, not just active */
-  .page { display:block!important; }
-  .wrapper { padding:0!important; max-width:100%!important; }
+  /* ── Show all pages ── */
+  .page { display: block !important; }
+  .wrapper { padding: 16px 20px !important; max-width: 100% !important; }
 
-  /* ── Page break strategy ── */
-  /* Cover / hero section — page 1 */
-  .hero { page-break-after:avoid; }
-  .stat-strip { page-break-after:always; }
+  /* ── Show ALL unit panels ── */
+  .unit-panel { display: block !important; }
 
-  /* Each unit panel = its own page */
-  .unit-panel { page-break-before:always; page-break-inside:avoid; }
+  /* ── Show ALL unit panel subs (all tabs) ── */
+  .unit-panel-sub { display: block !important; }
+  .unit-panel-sub.active { display: block !important; }
 
-  /* Show all unit panel subs (not just active tab) */
-  .unit-panel-sub { display:block!important; }
+  /* ── Expand all accordion bodies ── */
+  .dl-acc-body { display: block !important; }
 
-  /* Inspection items & readings tables: no orphan rows */
-  .readings-table, .history-table { page-break-inside:avoid; }
-  .readings-table tr, .history-table tr { page-break-inside:avoid; }
-  .insp-item { page-break-inside:avoid; }
-  .insp-group-label { page-break-after:avoid; }
+  /* ── White backgrounds on dark elements ── */
+  .unit-panel {
+    background: #fff !important;
+    border: 1px solid #ccc !important;
+    border-radius: 0 !important;
+  }
+  .unit-panel-body { background: #fff !important; }
+  .unit-card {
+    background: #f5f7fa !important;
+    border: 1px solid #ccc !important;
+  }
+  .unit-card-id { color: #005fa3 !important; }
+  .unit-card-type { color: #555 !important; }
+  .tank-card {
+    background: #f5f7fa !important;
+    border: 1px solid #ccc !important;
+  }
+  .tank-card-id { color: #005fa3 !important; }
+  .tank-card-desc { color: #555 !important; }
+  .tank-card-icon { display: none !important; }
 
-  /* Daily Log accordion: expand all, clean display */
-  .dl-acc-body { display:block!important; border:none!important; background:none!important; }
-  .dl-accordion-item { page-break-inside:avoid; margin-bottom:0!important; }
+  /* Stat strip */
+  .stat-strip { background: #d0d5dd !important; }
+  .stat-cell { background: #f5f7fa !important; }
+  .stat-label { color: #555 !important; }
+  .stat-value, .val-teal, .val-green, .val-amber, .val-white, .val-red {
+    color: #111 !important;
+  }
+  .stat-sub { color: #666 !important; }
+
+  /* Hero */
+  .report-eyebrow { color: #005fa3 !important; }
+  .report-title { color: #111 !important; }
+  .report-subtitle { color: #444 !important; }
+  .hero-tags .tag { color: #444 !important; border-color: #aaa !important; }
+  .overall-status { border: 1px solid #aaa !important; }
+  .status-pass { background: #e8f5ee !important; color: #1a7a3c !important; }
+  .status-attn { background: #fff8e8 !important; color: #a06000 !important; }
+
+  /* Section labels */
+  .section-tag { color: #005fa3 !important; background: #e8f0fa !important; border-color: #99bbe8 !important; }
+  .section-tag.amber { color: #a06000 !important; background: #fff8e8 !important; }
+
+  /* Readings / history tables */
+  .readings-table thead tr { background: #eef1f6 !important; border-bottom: 2px solid #99bbe8 !important; }
+  .readings-table th, .history-table th { color: #333 !important; }
+  .readings-table td, .history-table td { color: #111 !important; border-bottom: 1px solid #ddd !important; }
+
+  /* Badges */
+  .badge { color: #333 !important; background: #eef1f6 !important; border-color: #aaa !important; }
+  .badge-pass { background: #e8f5ee !important; color: #1a7a3c !important; border-color: #1a7a3c !important; }
+  .badge-attn { background: #fff8e8 !important; color: #a06000 !important; border-color: #c07800 !important; }
+  .badge-fail { background: #fdeaea !important; color: #c00 !important; border-color: #c00 !important; }
+
+  /* Info blocks */
+  .info-block { color: #111 !important; }
+  .info-label { color: #555 !important; }
+  .info-value { color: #111 !important; }
+
+  /* Inspection items */
+  .insp-item { border-bottom: 1px solid #eee !important; }
+  .insp-name { color: #111 !important; }
+  .insp-detail { color: #555 !important; }
+  .insp-note { color: #333 !important; }
+  .insp-group-label { color: #005fa3 !important; background: #eef1f6 !important; }
+
+  /* Accordion in print */
   .dl-acc-header {
-    background:#f0f4f8!important; border:1px solid #ccc!important;
-    border-radius:4px 4px 0 0!important; margin-bottom:0!important;
-    page-break-after:avoid;
+    background: #eef1f6 !important;
+    border: 1px solid #ccc !important;
+    border-radius: 4px 4px 0 0 !important;
+    margin-bottom: 0 !important;
   }
-  #dl-accordion { border:1px solid #ccc; border-radius:6px; overflow:hidden; }
-  .dl-acc-body table { border-collapse:collapse!important; }
-  .dl-acc-body td, .dl-acc-body th {
-    border-bottom:1px solid #ddd!important; color:#111!important;
-    background:#fff!important;
+  .dl-acc-body {
+    background: #fff !important;
+    border: 1px solid #ccc !important;
+    border-top: none !important;
+    margin-bottom: 4px !important;
+    border-radius: 0 0 4px 4px !important;
   }
-  .dl-acc-body tr:nth-child(even) td { background:#f8f9fa!important; }
-
-  /* Stat strip: light print version */
-  .stat-cell { background:#f8f9fa!important; border:1px solid #ddd!important; }
-  .stat-value, .val-teal, .val-green, .val-amber, .val-white { color:#111!important; }
-  .stat-label { color:#666!important; }
-
-  /* Unit panel: light version */
-  .unit-card { background:#fff!important; border:1px solid #ccc!important; }
-  .unit-card-header { background:#f0f4f8!important; }
-
-  /* Tables */
-  .readings-table thead tr { background:#f0f4f8!important; }
-  .readings-table th, .history-table th { color:#333!important; }
-  .readings-table td, .history-table td { color:#111!important; }
-  .badge { border:1px solid #ccc!important; color:#333!important; background:#f0f4f8!important; }
-  .badge-pass { background:#e8f5ee!important; color:#1a7a3c!important; border-color:#1a7a3c!important; }
-  .badge-attn { background:#fff8e8!important; color:#a06000!important; border-color:#a06000!important; }
+  .dl-acc-body table { border-collapse: collapse !important; width: 100% !important; }
+  .dl-acc-body td, .dl-acc-body th { color: #111 !important; border-bottom: 1px solid #eee !important; }
+  .dl-acc-body tr:nth-child(even) td { background: #f8f9fa !important; }
+  #dl-accordion { border-radius: 6px !important; }
 
   /* Report footer */
-  .report-footer { page-break-before:always; }
+  .report-footer { color: #444 !important; border-top: 1px solid #ccc !important; }
+
+  /* Parts / inventory section */
+  .parts-table th { background: #eef1f6 !important; color: #333 !important; }
+  .parts-table td { color: #111 !important; }
+  .priority-row { background: #fff8e8 !important; }
+  .inventory-placeholder { display: none !important; }
+
+  /* ── PAGE BREAK STRATEGY ── */
+
+  /* Cover: hero + stat strip = page 1 */
+  .hero { page-break-inside: avoid; page-break-after: avoid; }
+  .stat-strip { page-break-after: always; page-break-inside: avoid; }
+
+  /* Each site tab section = new page */
+  .page { page-break-before: always; }
+  .page:first-of-type { page-break-before: avoid; }
+
+  /* Each unit panel = new page */
+  .unit-panel {
+    page-break-before: always;
+    page-break-inside: avoid;
+  }
+
+  /* Unit cards grid: keep together */
+  .units-grid { page-break-inside: avoid; }
+  .unit-card { page-break-inside: avoid; }
+
+  /* Table rows: no orphans */
+  .readings-table tr, .history-table tr { page-break-inside: avoid; }
+  .insp-item { page-break-inside: avoid; }
+  .insp-group-label { page-break-after: avoid; }
+
+  /* Daily log: each day accordion = keep together */
+  .dl-accordion-item { page-break-inside: avoid; }
+  .dl-acc-header { page-break-after: avoid; }
+
+  /* Footer */
+  .report-footer { page-break-before: always; page-break-inside: avoid; }
 }
 
 </style>
